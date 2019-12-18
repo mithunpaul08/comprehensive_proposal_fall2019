@@ -1,0 +1,134 @@
+\documentclass[conference,onecolumn]{IEEEtran}
+% *** GRAPHICS RELATED PACKAGES ***
+%
+
+\ifCLASSINFOpdf
+  \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  \graphicspath{{fig/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png, .bmp}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+   \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+   \graphicspath{{eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+   \DeclareGraphicsExtensions{.eps}
+\fi
+\usepackage[bookmarks=false]{hyperref}
+\usepackage{mathtools}
+\usepackage{amssymb,amsmath}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tabulary}
+\usepackage{setspace}
+%\usepackage{framed}
+\usepackage{setspace}
+\usepackage{balance}
+\usepackage{flafter}
+%\usepackage[linesnumbered,ruled]{algorithm2e}
+%\usepackage{algorithmic}
+%\usepackage{algorithm}
+\usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{varwidth}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\DontPrintSemicolon
+
+%\usepackage{algorithm2e}
+%\usepackage{amsmath}
+%\usepackage[linesnumbered,ruled]{algorithm2e}
+%\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+
+
+% This allows align equations to be broken across pages
+\allowdisplaybreaks
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+%\doublespacing
+\begin{document}
+
+\title{My Title}  
+
+% author names and affiliations
+% use a multiple column layout for up to two different
+% affiliations
+
+\author{\IEEEauthorblockN{}
+\IEEEauthorblockA{My name\\
+}
+}
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+% make the title area
+\maketitle
+
+
+\begin{IEEEkeywords}
+xxx
+\end{IEEEkeywords}
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+%\IEEEpeerreviewmaketitle
+
+
+
+\section*{Problem Statement}
+afadsf
+adf
+
+ad
+\section*{Preliminary Work}
+\subsection{Knowledge Distillation of Data}
+adf
+
+ad
+\section*{Acknowledgments}
+afadsf
+adf
+
+ad
+\section*{Acknowledgments}
+afadsf
+adf
+
+ad
+\section*{Acknowledgments}
+afadsf
+adf
+
+ad
+
+
+
+
+\balance
+\begin{spacing}{0.88}
+\bibliographystyle{IEEEtran}
+\bibliography{cloud}
+\end{spacing}
+
+% that's all folks
+\end{document}
