@@ -96,16 +96,72 @@ xxx
 
 
 \section*{Problem Statement}
-afadsf
-adf
+Neural networks (NNs)  play a key role in most modern natural language processing (NLP) systems, obtaining state-of-the-art (SOA) performance~\citep{devlin2018bert, sun2018improving,bohnet2018morphosyntactic} in many complex tasks, e.g., recognizing textual entailment~\citep{kim2018semantic}, fake news detection~\citep{baird2017talos} and fact verification~\citep{nie2018combining}.
 
-ad
+However, these models depend heavily on lexical information that may transfer poorly between different domains. For example, in early experiments in the fact verification space, we observed that out of all the 34 statements containing the phrase ``American Author,'', 31 (91\%) belonged to one class label. Such information could be meaningful say, in the literature domain, but transfers poorly to other domains such as science or entertainment. 
+
+In this work we aim to: (a) understand and estimate the importance that a neural network assigns to various aspects of the data while learning and making predictions, and (b) learn how to control for unnecessary lexicalization. Here we focus on the recognizing textual entailment (RTE) task \citep{dagan2013recognizing}, and its application to fact verification \citep{thorne2018fever, pomerleau2017fake}.
+
+RTE is the task of determining if one piece of text can be plausibly inferred from another. In the Fact Extraction and Verification (FEVER) shared task \cite{thorne2018fever}, the RTE module was used determine if a given set of evidence sentences, when compared with the claim provided, can be classified as \textit{supports, refutes}, or \textit{not enough information}.
+In this context, the contributions of our work are:
+
+{\flushleft {\bf (1)}} To verify that models trained on lexicalized data transfer poorly, we implement a domain transfer experiment where a state-of-the-art RTE model ~\cite{parikh2016decomposable}  is trained on the FEVER data, and tested on the Fake News Challenge (FNC) \citep{pomerleau2017fake} 
+dataset, and vice versa. As expected, even though this method achieves high accuracy when evaluated in the same domain, the performance in the target domain is poor, marginally above chance.
+ 
+ 
+ {\flushleft {\bf (2)}} We perform an error analysis and examine the attention weights that the model  assigns when making incorrect predictions.
+ 
+ With this analysis, we are able to confirm that most of the weight is assigned to POS tags of nouns or elements of noun phrases, which confirms our observation that these models anchor themselves on lexical information that is more likely to be domain dependent. 
+ 
+{\flushleft {\bf (3)}} To mitigate this dependence on lexicalized information, we experiment with several strategies for delexicalization, i.e., where lexical tokens are replaced (or masked) with indicators of their class. While the technique of delexicalization/masking has been used before \citep[e.g.,]{zeman2008cross}, here we expand it by incorporating semantic information. 
+
+
+
+ 
+In particular, we first replace named entities with their corresponding semantic tags from Stanford's CoreNLP \citep{manning2014stanford}. 
+To keep track of which entities are referenced between claim and evidence sentences, we extend these tags with unique identifiers. 
+%
+Second, we similarly replace other word classes in the sentence (common nouns, verbs, adjectives, and adverbs)  with their super sense tags \citep{ciaramita2003supersense}.
+
+
+
+{\flushleft {\bf (4)}}  The evaluation of the proposed masking strategy on the two fact verification datasets indicates that,
+while the in-domain performance remains on par with that of the model trained on the original, lexicalized data, it improves considerably when tested in the out-of-domain dataset. 
+For example, the performance of a state-of-the-art RTE model trained on the masked FNC data and evaluated on FEVER data improved by over 10\% in accuracy score compared to the fully lexicalized model. Similarly, the model trained on the masked FEVER data and tested on FNC outperforms the lexicalized model by 4.7\% FNC score.
+Thus our experiments demonstrate that our masking strategy is successful in mitigating the dependency on domain-specific lexical information.
+
+
+
+Neural networks (NNs)  play a key role in in most natural language processing systems with state of the art (SOA) performance \citep{devlin2018bert, sun2018improving,bohnet2018morphosyntactic} especially in the domain of recognizing textual entailment \citep{kim2018semantic}, fake news detection \citep{baird2017talos} and fact verification \citep{nie2018combining}.
+
+However, we suspect that these models depend heavily on lexical information that may transfer poorly between different domains. For example, in early experiments in the fact verification space, we observed that out of all the statements containing the phrase ``American Author,'' 91\% of them belonged to one class label. Such information could be meaningful in the literature news domain, but transfers poorly to other domains such as science or entertainment. 
+% However, we suspect that these models depend heavily on lexical information that may transfer poorly between different domains. For example, while doing early experiments in the fact verification space, we observed that out of all the statements containing the phrase ``American Author'' 91\% of them belonged to one class label. Such information is meaningful in the literature news domain, but transfers poorly to other domains such as science or entertainment. 
+
+In this work we aim to understand and estimate the importance that a neural network assigns to various aspects of the data while learning and making predictions. Here we focus on the recognizing textual entailment (RTE) task \citep{dagan2013recognizing}, and its application to fact verification \citep{thorne2018fever}.
+RTE is the task of determining if one piece of text can be plausibly inferred from another. In the Fact Extraction and Verification (FEVER) shared task \cite{thorne2018fever}, the RTE module was used determine if a given set of evidence sentences, when compared with the claim provided, can be classified as \textit{supports, refutes}, or \textit{not enough information}.
+In this context, the contributions of this work are:
+
+
+
+
+{\flushleft {}}
+
+{\flushleft {\bf (1)}} We investigate the attention weights a state of the art RTE method~\cite{parikh2016decomposable} assigns to input tokens in the RTE component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., NN, NNP etc.) or their phrases, which verified our ``American Author" observation stated above.
+{\flushleft {\bf (2)}}  To verify that these lexicalized models transfer poorly, we implement a domain transfer experiment where a RTE component is trained on the FEVER data, and tested on the Fake News Challenge (FNC) \citep{pomerleau2017fake} dataset. As expected, even though this method achieves high accuracy when evaluated in the same domain, the performance in the target domain is poor, marginally above chance.
+
+{\flushleft {\bf (3)}}  To mitigate this dependence on lexicalized information, we experiment with several strategies for masking out names by replacing them with their semantic category, coupled with a unique identifier to mark that the same or new entities are referenced between claim and evidence. The results show that, while the performance on the FEVER dataset remains at par with that of the model trained on lexicalized data, it improves significantly when tested in the FNC dataset. Thus our experiments demonstrate that our strategy is successful in mitigating the dependency on lexical information.
+
+
+
+
 \section*{Preliminary Work}
+\subsection{Knowledge Distillation of Data}
+\subsection{Related work}
 \subsection{Knowledge Distillation of Data}
 adf
 
 ad
-\section*{Acknowledgments}
+\section*{Plan for Dissertation}
 afadsf
 adf
 
