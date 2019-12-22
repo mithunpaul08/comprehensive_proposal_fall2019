@@ -56,7 +56,7 @@
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
-%\doublespacing
+\doublespacing
 \begin{document}
 
 \title{On the Importance of Delexicalization for Fact Verification}
@@ -93,6 +93,25 @@ However, I suspect that these models depend heavily on lexical information that 
 
 
 \subsection{Related Work}
+The task of natural language inference (NLI) is considered to be an integral part of natural language understanding (NLU). In this task, which can be seen as a particular instance of recognizing textual entailment (RTE) \cite{fyodorov2000natural,condoravdi2003entailment,bos2005recognising,maccartney2009extended}, a model is asked to classify if a given sentence (premise) \textit{entails}, \textit{contradicts} or is \textit{neutral} given a second sentence (hypothesis).
+it has been shown that these models also learn from the subtle biases inherent in these datasets \cite{gururangan2018annotation}.
+
+In order to advance any NLP task, quality data sets are quintessential. Some such data sets which have enabled the advancement of NLI (and fact verification) are SNLI \cite{bowman2015large} MNLI \cite{williams2017broad}, FEVER \cite{thorne2018fever}, and FNC \cite{pomerleau2017fake}.
+
+However these datasets are not devoid of biases (subtle statistical patterns in a dataset, which could have been introduced either due to the methodology of data collection or due to an inherent social bias). 
+For example, \cite{gururangan2018annotation} and \cite{poliak2018hypothesis} show that biases were introduced into the MNLI dataset by certain language creation choices made by the crowd workers. Similarly, \cite{schuster2019towards} show that in the FEVER, the REFUTES label (same as the \textit{contradicts} label mentioned above) highly correlates with the presence of negation phrases. 
+
+These biases can be readily exploited by neural networks (NNs), and thus have influence on performance.  As an example, \cite{gururangan2018annotation} demonstrate that many state of the art methods in NLI could still achieve reasonable accuracies when trained with the hypothesis alone. Similarly, \cite{emnlp2019sandeep} show that some NN methods with very high performance accuracies are heavily dependent on lexical information. This tendency of NNs to inadvertantly exploit such dataset artifacts is likely worsened by the fact that currently the success of NLP approaches is almost exclusively measured by empirical performance on benchmark datasets. While this emphasis on performance has facilitated the development of practical solutions, they may lack guidance as they are often not motivated by more general linguistic principles or human intuition. This makes it difficult to accurately judge the degree to which these methods actually extract reasonable representations, correlate with  human intuition or understand the underlying semantics~\cite{dagan2013recognizing}.
+
+
+ 
+In this work we postulate that altering these datasets based on lexical importance is beneficial for organizing research and guiding future empirical work. While the technique of delexicalization (or masking) has been used before~\cite{zeman2008cross}, we have expanded it by incorporating semantic information (the assumption that meaning arises from a set of independent and discrete semantic units)~\cite{peyrard2019simple}. Since these techniques are general and compatible with most existing semantic representations, we believe they can be further extended onto datasets used for other NLP tasks. Thus, by enabling integration of these techniques into the training pipeline, we hope to control lexicalization in the datasets which the NN methods possibly depend upon. 
+
+
+
+ 
+In this work we postulate that altering these datasets based on lexical importance is beneficial for organizing research and guiding future empirical work. While the technique of delexicalization (or masking) has been used before~\cite{zeman2008cross}, we have expanded it by incorporating semantic information (the assumption that meaning arises from a set of independent and discrete semantic units)~\cite{peyrard2019simple}. Since these techniques are general and compatible with most existing semantic representations, we believe they can be further extended onto datasets used for other NLP tasks. Thus, by enabling integration of these techniques into the training pipeline, we hope to control lexicalization in the datasets which the NN methods possibly depend upon. 
+
 
 \section{Preliminary Work}
 
@@ -271,7 +290,7 @@ RTE is the task of determining if one piece of text can be plausibly inferred fr
 \balance
 \begin{spacing}{0.88}
 \bibliographystyle{IEEEtran}
-\bibliography{masking}
+\bibliography{compre_masking}
 \end{spacing}
 
 % that's all folks
