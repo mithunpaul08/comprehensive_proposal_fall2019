@@ -1,4 +1,4 @@
-\documentclass[conference,onecolumn]{IEEEtran}
+\documentclass[compsoc,onecolumn]{IEEEtran}
 % *** GRAPHICS RELATED PACKAGES ***
 %
 
@@ -59,14 +59,14 @@
 %\doublespacing
 \begin{document}
 
-\title{My Title}  
+\title{On the Importance of Delexicalization for Fact Verification}
 
 % author names and affiliations
 % use a multiple column layout for up to two different
 % affiliations
 
 \author{\IEEEauthorblockN{}
-\IEEEauthorblockA{My name\\
+\IEEEauthorblockA{Mithun Paul\\
 }
 }
 
@@ -78,25 +78,12 @@
 \maketitle
 
 
-\begin{IEEEkeywords}
-xxx
-\end{IEEEkeywords}
 
-
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
-%
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
-%\IEEEpeerreviewmaketitle
-
-
-
-\section*{Problem Statement}
+\section{Problem Statement}
 Neural networks (NNs)  play a key role in in most natural language processing systems with state of the art (SOA) performance \cite{devlin2018bert, sun2018improving,bohnet2018morphosyntactic} especially in the domain of recognizing textual entailment \cite{kim2018semantic}, fake news detection \cite{baird2017talos} and fact verification \cite{nie2018combining}.
+
+
+Here I focus on the recognizing textual entailment (RTE) task \cite{dagan2013recognizing}, and its application to fact verification \cite{thorne2018fever}.
 
 In the world of natural language understanding, recognizing textual entailment (RTE) is the task of determining if one piece of text can be plausibly inferred from another. In the Fact Extraction and Verification (FEVER) shared task \cite{thorne2018fever}, the RTE module was used determine if a given set of evidence sentences, when compared with the claim provided, can be classified as \textit{supports, refutes}, or \textit{not enough information}.
 
@@ -107,82 +94,176 @@ However, I suspect that these models depend heavily on lexical information that 
 
 \subsection{Related Work}
 
-\section*{Preliminary Work}
+\section{Preliminary Work}
 
 
-In this section I describe several preliminary experiments I conducted to verify that models trained on lexicalized data transfer poorly across domains. Further I also show results from a few proposed solutions which control for unnecessary lexicalization enabling data transfer across domains.
+In this section I describe several preliminary experiments I conduct to verify that models trained on lexicalized data transfer poorly across domains. In particular I investigate the attention weights a state of the art RTE method~\cite{parikh2016decomposable} assigns to input tokens in the RTE component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., NN, NNP etc.) or their phrases, which verify my ``American Author" observation stated above. Further I also show results from a few proposed solutions which control for unnecessary lexicalization enabling data transfer across domains.
+
+
+
+\subsection{Experiment Set-Up}
  
-\subsection{Problem Verification}
-
-To verify that models trained on lexicalized data transfer poorly, I implemented a domain transfer experiment where a state-of-the-art RTE model~\cite{parikh2016decomposable}  is trained on the FEVER data, and tested on the Fake News Challenge (FNC) \cite{pomerleau2017fake} dataset, and vice versa. Here the aim was to understand and estimate the importance that a neural network assigns to various aspects of the data while learning and making predictions, and (b) learn how to control for unnecessary lexicalization.
-As expected, even though this method achieves high accuracy when evaluated in the same domain, the performance in the target domain is poor, marginally above chance.
-
- I aim to: (a) understand and estimate the importance that a neural network assigns to various aspects of the data while learning and making predictions, and (b) learn how to control for unnecessary lexicalization. Here I focus on the recognizing textual entailment (RTE) task \cite{dagan2013recognizing}, and its application to fact verification \cite{thorne2018fever, pomerleau2017fake}.
-
-
-In this context, the contributions of our work are:
-
-{\flushleft {\bf (1)}} To verify that models trained on lexicalized data transfer poorly, I implement a domain transfer experiment where a state-of-the-art RTE model ~\cite{parikh2016decomposable}  is trained on the FEVER data, and tested on the Fake News Challenge (FNC) \cite{pomerleau2017fake} 
-dataset, and vice versa. As expected, even though this method achieves high accuracy when evaluated in the same domain, the performance in the target domain is poor, marginally above chance.
- 
- 
- {\flushleft {\bf (2)}} I perform an error analysis and examine the attention weights that the model  assigns when making incorrect predictions.
- 
- With this analysis, I are able to confirm that most of the weight is assigned to POS tags of nouns or elements of noun phrases, which confirms our observation that these models anchor themselves on lexical information that is more likely to be domain dependent. 
- 
-{\flushleft {\bf (3)}} To mitigate this dependence on lexicalized information, I experiment with several strategies for delexicalization, i.e., where lexical tokens are replaced (or masked) with indicators of their class. While the technique of delexicalization/masking has been used before \cite[e.g.,]{zeman2008cross}, here I expand it by incorporating semantic information. 
+To verify that models trained on lexicalized data transfer poorly, I implement a domain transfer experiment where a state-of-the-art RTE model is trained on one dataset (FEVER \cite{thorne2018fever}) and tested on another dataset (Fake News Challenge \cite{pomerleau2017fake}). In particular, the neural network method I use is the Decomposable Attention (DA) \cite{parikh2016decomposable}, which consistently achieves near state-of-the-art performance on RTE tasks \footnote{This experiment was initially setup during the 2018 FEVER shared task which had provided Decomposable Attention as a strong baseline. At the completion of the shared task, most of the winning teams used another model \cite{chen2016enhanced}. However, the aim of my work is not to outperform the state of the art performance, but rather to generalize to new domains without retraining.}.  I use the AllenNLP \footnote{\url{https://github.com/allenai/allennlp}}
+implementation of DA, which was provided by the FEVER task organizers. To investigate DA's reliance on lexical information, I first examine its word-level attention weights (Section \ref{attention_analysis}). 
+Informed by these results, I propose several methods to mask the lexicalized data (Section \ref{masking_techniques}), and evaluate them in in-domain and  out-of-domain settings (Section \ref{sec:results}).
 
 
 
- 
-In particular, I first replace named entities with their corresponding semantic tags from Stanford's CoreNLP \cite{manning2014stanford}. 
-To keep track of which entities are referenced between claim and evidence sentences, I extend these tags with unique identifiers. 
 
-Second, I similarly replace other word classes in the sentence (common nouns, verbs, adjectives, and adverbs)  with their super sense tags \cite{ciaramita2003supersense}.
+\begin{table}
+    \centering
+    \footnotesize
+    \begin{tabular}{ccccc}
+        Dataset & Support & Refute & Discuss & Unrelated \\
+        \hline
+        FNC    & 5,581 & 1,537  & 13,373 & 54,894 \\
+        FEVER  &  86,701 & 36,441  & \multicolumn{2}{c}{42,305 (\textit{NEI})} \\  
+    \end{tabular}
+    \caption{Label distribution for the FEVER and FNC datasets.  I consider the \textit{agree} and \textit{disagree} FNC labels as equivalent to the \textit{support} and \textit{refute} labels in FEVER. The FNC \textit{not enough info (NEI)} label is listed below the more fine-grained \textit{discuss} and \textit{unrelated} FEVER labels.  }
+    \label{tab:data}
+\end{table}
+
+\subsection{Datasets}
+I use two distinct fact verification datasets for my experiments :
+
+{\flushleft{\bf Fake News Challenge (FNC):}} 
+The FNC dataset~\cite{pomerleau2017fake} contains four classes (\textit{agree}, \textit{disagree}, \textit{discuss}, and \textit{unrelated}) and has publicly available training (49,972 data points) and test partitions (25,413 data points). Each data point consists of a claim and a set of evidence sentences.  I split the training dataset into two partitions, with 40,904 records for training and 9,068 records for development.
+
+{\flushleft{\bf Fact Extraction and Verification (FEVER):}} The FEVER \cite{thorne2018fever} dataset consists of 145,449 training data points, each of which has a claim and a set of evidences retrieved from Wikipedia using a baseline information retrieval (IR) module.
+The FEVER claim-evidence pairs were assigned labels from three classes: \textit{supports}, \textit{refutes}, and \textit{not enough info (NEI)} . Even though the partition of the FEVER dataset that was used in the final shared task competition was released publicly, the gold test labels were not. Hence I used the development portion (19,998 data points) instead as my test partition. I created my own development partition by randomly dividing the training partition into 80\% for training (119,197 data points) and 20\% (26,252 data points) for development.  The evidence for data points that had the gold label of \textit{not enough info} can be retrieved (using a task-provided IR component) either by finding the nearest neighbor to the claim or randomly \cite{thorne2018fever}. 
+
+
+\subsubsection{Cross-domain Labels}
+\label{sec:crossdomain}
+
+
+In order to evaluate models in a cross-domain setting, I modified the label space of the source domain to match that of the target domain. This  also allows us to evaluate using the official scoring measures of the target domain. In particular, when training on FEVER and testing on FNC, the data points in FEVER that belong to the class \textit{supports} were relabeled as \textit{agree}, and those in \textit{refutes} as \textit{disagree}. The data points belonging to the third class \textit{NEI} were divided into \textit{discuss} and \textit{unrelated} as follows.
+In the FEVER dataset, two separate methods were used to retrieve the evidence sentences for the class \textit{NEI}: 1) sampling a sentence from the nearest page to the claim as evidence using their document retrieval component, and 2) sampling a sentence from Wikipedia uniformly at random. The evidence sentences retrieved using the nearest page technique were assigned the label \textit{discuss} (since it was more likely to be topically relevant to the claim), and the rest were assigned the label \textit{unrelated}. Also the distribution of labels was made similar to that of FNC. In particular, 16.86\% of the total 35,639 data points that originally belonged to the class NEI in FEVER were thus assigned the label \textit{discuss} and the rest (83.14\%) were assigned the label \textit{unrelated}. For the experiments in the opposite direction, i.e., when training on FNC and testing on FEVER, I collapsed the \textit{unrelated} and \textit{discuss} classes into a single class, \textit{not enough info} (see Table~\ref{tab:data} for a summary on label distribution).
+
+
+\subsection{Error Analysis of Cross-Domain Attention}\label{attention_analysis}
+
+
+I use the word-level attention weights~\cite{bahdanau2014neural} learned by DA to perform  an error analysis in the cross-domain evaluation. 
+In particular, I first trained two equivalent DA models, one on FEVER and the other on FNC. 
+Next, I used both models to predict instances in FEVER development. For each data instance, I calculated the cumulative attention weights assigned by each of the two models to all evidence words. 
+For each of the data instances that were {\em incorrectly} classified by the model trained out of domain (i.e., on FNC) and were {\em correctly} classified by the in-domain model, 
+I  selected the words that were present in the set of top three words with the highest attention score according to the out-of-domain model, but were {\em not} present in the equivalent set produced by the in-domain model. Such words indicate potential overfitting of the out-of-domain model. 
+Figure \ref{fig:attention} shows the distribution of part-of-speech (POS) tags for these words. The figure indicates that, for incorrectly classified examples in cross-domain, the higher attention weights were assigned to nouns.
+Importantly, 43.10\% of these noun phrases in FEVER are named entities. 
 
 
 
-{\flushleft {\bf (4)}}  
+\begin{figure}
+ \includegraphics[width=0.95\linewidth]{histogram_2.jpg}
+    \vspace{-3mm}
+    \caption{ Distribution of POS tags that were assigned the highest attention weights by DA for incorrectly classified cross-domain examples.}
+  \label{fig:attention}
+\vspace{-6mm}
+\end{figure}
+
+
+
+ With this analysis, I was able to confirm that most of the weight is assigned to POS tags of nouns or elements of noun phrases, which confirms my observation that these models anchor themselves on lexical information that is more likely to be domain dependent. 
+ As expected, even though this method achieves high accuracy when evaluated in the same domain, the performance in the target domain is poor, marginally above chance.
+
+
+
+
+
 
 \subsection{Proposed Solutions}
-To mitigate this dependence on lexicalized information, I experiment with several strategies for delexicalization, i.e., where lexical tokens are replaced (or masked) with indicators of their class. While the technique of delexicalization/masking has been used before \cite[e.g.,]{zeman2008cross}, here I expand it by incorporating semantic information. 
+To mitigate the potential domain dependence introduced by these large attention weights, I propose several semantic masking techniques, which I compare with a deletion baseline.  
+Particularly I experiment with several strategies for delexicalization, i.e., where lexical tokens are replaced (or masked) with indicators of their class. While the technique of delexicalization/masking has been used before \cite[e.g.,]{zeman2008cross}, here I expand it by incorporating semantic information. In particular, I first replace named entities with their corresponding semantic tags from Stanford's CoreNLP \cite{manning2014stanford}. 
+To keep track of which entities are referenced betIen claim and evidence sentences, I extend these tags with unique identifiers. Second, I similarly replace other word classes in the sentence (common nouns, verbs, adjectives, and adverbs)  with their super sense tags \cite{ciaramita2003supersense}.
+
+\subsubsection{Masking Techniques} \label{masking_techniques}
+In this section we describe in detail various masking techniques which were used in the experiments. Examples of each form of masking are shown in Table~\ref{masking_examples}.
 
 
+\begin{table*}[t]
+\begin{center}
+\begin{tabular}{p{20mm}|p{55mm}|p{70mm}}
+
+\textbf{Config.} & \textbf{Claim}& \textbf{Evidence} \\ \hline
+Lexicalized & {With Singapore Airlines, the Airbus A380 entered commercial service.} & {The A380 made its first flight on 27 April 2005 and entered commercial service on 25 October 2007 with Singapore Airlines.}\\
+\hline 
+NE Deletion & {With  , the  entered commercial service.} & {The A380 made its  flight on  and entered commercial service on  with.}\\
+\hline 
+Basic NER  & {With \texttt{organization}, the \texttt{miscellaneous} entered commercial service.} & {The A380 made its \texttt{ordinal} flight on \texttt{date} and entered commercial service on \texttt{date} with \texttt{organization}.}\\
+\hline 
+OA-NER  & {With \texttt{organization-c1}, the \texttt{misc-c1} entered commercial service.} & {The A380 made its \texttt{ordinal-e1} flight on \texttt{ date-e1} and entered commercial service on \texttt{date-e2} with \texttt{organization-c1}.}\\
+\hline 
+
+\mbox{OA-NER+SS} Tags & {With \texttt{organization-c1}, the \texttt{artifact-c1} \texttt{motion-c1} commercial \texttt{act-c1} .} & {The A380 \texttt{stative} its \texttt{ordinal-e1 cognition-e1} on \texttt{date-e1} and \texttt{motion-c1} commercial \texttt{act-c1 on date-e4} with \texttt{organization-c1}.  
+}\\
+
+\end{tabular}
+\end{center}
+
+    \caption{ Example illustratingmy various masking techniques, compared to the original fully lexicalized data. Note that the masking tags were generated with real-world (imperfect) tools. For example, "Airbus A380" in the claim was correctly classified as \texttt{miscellaneous} by the NER tool, while ``A380" in the evidence was not, thus preventing us from taking advantage of the overlap. }
+    \label{masking_examples}
+\end{table*}
+
+{\flushleft{\textbf{Named Entity (NE) Deletion Baseline:} }}
+Lexical items which are tagged as named or numeric entities (NE) by CoreNLP's named entity recognizer (NER)~\cite{manning2014stanford} are deleted.  
+
+{\flushleft{\textbf{Basic NER:}}}  Token sequences which are labeled as NEs are replaced by the corresponding label, e.g., \texttt{location, person}.
+
+{\flushleft{\textbf{Overlap Aware NER (OA-NER)}: }} This technique additionally captures the \textit{lexical overlap} between the claim and evidence sentences with entity ids.  
+That is, the first instance of a given entity in the claim is tagged with \texttt{c1}, where the \texttt{c} denotes the fact that it was found in the claim sentence (e.g., \texttt{person-c1}). Wherever this {\em same} entity is found later, in claim or in evidence, it is replaced with this unique tag. If an entity is found only in evidence, then it is denoted by an \texttt{e} tag. (e.g., \texttt{location-e3} would be the third location found only in the evidence).
+
+For example, in the claim-evidence pair shown in Table~\ref{masking_examples}, when the named entity \textit{Singapore Airlines} appears in the claim it is replaced with \texttt{organization-c1}, since it is the first \texttt{organization} to appear in claim. 
+The same id is used wherever the same entity is seen again, e.g., in the evidence sentence. However, the date \textit{27 April 2005} occurs only in the evidence, and hence it is replaced with \texttt{date-e1}.
+Importantly, I create pseudo-pretrained embeddings for these new OA-NER-based tokens by adding a small amount of random Gaussian noise (mean 0 and variance of 0.1) to pre-trained embeddings~\cite{pennington2014glove} of the root word corresponding to the category (e.g., \textit{person}). Thus the embeddings of all the sub-tags, while being unique, are close to that of the root word.
+{\flushleft{\textbf{OA-NER + Super Sense (SS) Tags}}}:
+Super-sense tagging is a sequence modeling approach that annotates phrases with coarse WordNet senses~\cite{ciaramita2003supersense,miller1990introduction}. In this masking method, I not only replace named entities with their OA-NER tags, but also replace other lexical items with their corresponding super sense tags, if found. As with the OA-NER approach, the lexical overlap is also explicitly marked for all these tags with unique ids (see Table~\ref{masking_examples}). 
+
+
+\begin{table*}[ht]
+\begin{center}
+\begin{tabular}{p{22mm}|p{9mm}p{9mm}p{9mm}p{9mm}}
+ & \multicolumn{4}{c}{Configuration} \\
+ \hline
+Train Domain & {FNC}& {FEVER}  & {FEVER} & {{FNC}} \\ 
+Eval Domain & {FNC}& {{FNC}}  & {FEVER} & {{FEVER}} \\ \hline
+Masking & & & & \\
+\hline
+Lexicalized &68.99\%& {48.86\%} &83.43\%& {41.16\%} \\
+%\hline
+Deletion  &66.45\%& 40.23\% &75.34\%& 33.33\% \\
+%\hline
+Basic NER &69.40\%& 46.27\% &76.23\%& 35.72\%\\
+%\hline 
+\textbf{OA-NER} &65.85\%& \textbf{53.59}\% &{82.31\%}& {46.47\%}\\
+%\hline 
+\textbf{OA-NER+SS} & 45.51\%& 46.71\% &75.26\%& {\bf 51.77\%}\\
+\end{tabular}
+\end{center}
+    \caption{\label{crossdomain} Various masking techniques and their performance accuracies, both in-domain and out-of-domain.} \label{tab:results}
+
+\end{table*}
+
+
+\subsection{Results} 
+\label{sec:results}
 The evaluation of the proposed masking strategy on the two fact verification datasets indicates that,
 while the in-domain performance remains on par with that of the model trained on the original, lexicalized data, it improves considerably when tested in the out-of-domain dataset. 
 For example, the performance of a state-of-the-art RTE model trained on the masked FNC data and evaluated on FEVER data improved by over 10\% in accuracy score compared to the fully lexicalized model. Similarly, the model trained on the masked FEVER data and tested on FNC outperforms the lexicalized model by 4.7\% FNC score.
-Thus our experiments demonstrate that our masking strategy is successful in mitigating the dependency on domain-specific lexical information.
-
-
-In this work I aim to understand and estimate the importance that a neural network assigns to various aspects of the data while learning and making predictions. Here I focus on the recognizing textual entailment (RTE) task \cite{dagan2013recognizing}, and its application to fact verification \cite{thorne2018fever}.
+Thus my experiments demonstrate that my masking strategy is successful in mitigating the dependency on domain-specific lexical information.
 
 RTE is the task of determining if one piece of text can be plausibly inferred from another. In the Fact Extraction and Verification (FEVER) shared task \cite{thorne2018fever}, the RTE module was used determine if a given set of evidence sentences, when compared with the claim provided, can be classified as \textit{supports, refutes}, or \textit{not enough information}.
 
 
-In this context, the contributions of this work are:
-
-{\flushleft {}}
-
-{\flushleft {\bf (1)}} I investigate the attention weights a state of the art RTE method~\cite{parikh2016decomposable} assigns to input tokens in the RTE component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., NN, NNP etc.) or their phrases, which verified our ``American Author" observation stated above.
-{\flushleft {\bf (2)}}  To verify that these lexicalized models transfer poorly, I implement a domain transfer experiment where a RTE component is trained on the FEVER data, and tested on the Fake News Challenge (FNC) \cite{pomerleau2017fake} dataset. As expected, even though this method achieves high accuracy when evaluated in the same domain, the performance in the target domain is poor, marginally above chance.
-
-{\flushleft {\bf (3)}}  To mitigate this dependence on lexicalized information, I experiment with several strategies for masking out names by replacing them with their semantic category, coupled with a unique identifier to mark that the same or new entities are referenced between claim and evidence. The results show that, while the performance on the FEVER dataset remains at par with that of the model trained on lexicalized data, it improves significantly when tested in the FNC dataset. Thus our experiments demonstrate that our strategy is successful in mitigating the dependency on lexical information.
 
 
 
-\section*{Plan for Dissertation}
+\section{Future Work/Plan for Dissertation}
 \subsection{Knowledge Distillation of Data}
 
-\section*{Acknowledgments}
-afadsf
-adf
+\section{Conclusion}
+ To mitigate this dependence on lexicalized information, I experiment with several strategies for masking out names by replacing them with their semantic category, coupled with a unique identifier to mark that the same or new entities are referenced between claim and evidence. The results show that, while the performance on the FEVER dataset remains at par with that of the model trained on lexicalized data, it improves significantly when tested in the FNC dataset. Thus my experiments demonstrate that my strategy is successful in mitigating the dependency on lexical information.
 
-ad
-\section*{Acknowledgments}
-afadsf
-adf
-
-ad
 
 
 

@@ -68,6 +68,15 @@ A.~P. Parikh, O.~T{\"a}ckstr{\"o}m, D.~Das, and J.~Uszkoreit, ``A decomposable
   attention model for natural language inference,'' \emph{arXiv preprint
   arXiv:1606.01933}, 2016.
 
+\bibitem{chen2016enhanced}
+Q.~Chen, X.~Zhu, Z.~Ling, S.~Wei, H.~Jiang, and D.~Inkpen, ``Enhanced lstm for
+  natural language inference,'' \emph{arXiv preprint arXiv:1609.06038}, 2016.
+
+\bibitem{bahdanau2014neural}
+D.~Bahdanau, K.~Cho, and Y.~Bengio, ``Neural machine translation by jointly
+  learning to align and translate,'' \emph{arXiv preprint arXiv:1409.0473},
+  2014.
+
 \bibitem{zeman2008cross}
 D.~Zeman and P.~Resnik, ``Cross-language parser adaptation between related
   languages,'' in \emph{Proceedings of the IJCNLP-08 Workshop on NLP for Less
