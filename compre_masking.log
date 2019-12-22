@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  22 DEC 2019 16:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  22 DEC 2019 16:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1068,22 +1068,22 @@ Overfull \hbox (1.01219pt too wide) in paragraph at lines 333--334
  []
 
 [8] [9] (./compre_masking.bbl [10])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 395.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 410.
  [11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 395.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 410.
  (./compre_masking.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 395.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 395.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 395.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 410.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 410.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 410.
  ) 
 Here is how much of TeX's memory you used:
- 11138 strings out of 492649
- 174693 string characters out of 6129622
+ 11141 strings out of 492649
+ 174750 string characters out of 6129622
  286551 words of memory out of 5000000
  14788 multiletter control sequences out of 15000+600000
  47910 words of font info for 118 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 36i,10n,39p,1552b,505s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,39p,1552b,487s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1091,18 +1091,19 @@ pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
 
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
-live/2018/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/201
-8/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2018/texmf
--dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2018/texmf-dist/f
-onts/type1/urw/helvetic/uhvro8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/t
-ype1/urw/palatino/uplb8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/ur
-w/palatino/uplr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/palat
-ino/uplri8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/zapfding/uz
-dr.pfb>
-Output written on compre_masking.pdf (11 pages, 187064 bytes).
+live/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texli
+ve/2018/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2018/
+texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2018/texmf-d
+ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2018/texmf-dist/fon
+ts/type1/urw/helvetic/uhvro8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/typ
+e1/urw/palatino/uplb8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/
+palatino/uplr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/palatin
+o/uplri8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/zapfding/uzdr
+.pfb>
+Output written on compre_masking.pdf (11 pages, 195914 bytes).
 PDF statistics:
- 310 PDF objects out of 1000 (max. 8388607)
- 285 compressed objects within 3 object streams
- 78 named destinations out of 1000 (max. 500000)
+ 318 PDF objects out of 1000 (max. 8388607)
+ 292 compressed objects within 3 object streams
+ 81 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

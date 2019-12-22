@@ -352,14 +352,30 @@ In this section I describe a few proposed solutions where I explore combining de
 Knowledge distillation \citep*{ba2014deep,hinton2015distilling} is an approach where one neural network method functions as \textit{teacher} and transfers its knowledge to a \textit{student} model. Many previous methods using knowledge distillation (KD) focus on task-specific KD, which transfers knowledge from a single-task teacher to its student. More recently in Sun et al. \citep*{seo2016bidirectional} , Jiao et al. \citep*{jiao2019tinybert}, and Zhao et al.\citep*{zhao2019extreme}, Tang et al. \citep*{tang2019distilling} the KD algorithms are specially designed
 for transformer-based architectures, and the student models are adapted from teacher models. On the other hand Liu et al. \citep*{liu2019attentive}, explore the knowledge distillation method under the setting of multi-task learning \citep*{caruana1997multitask} \citep*{baxter2000model}.
 
+\subsection{Discussion of learning temperatures}
+
 \subsection{Proposed Solution}
 
-In this work, I propose
+In this work, I propose to distill the student model from one or more teachers. Specifically, the teacher model will learn from the lexicalized version of a given dataset, while the student model will from the corresponding delexicalized version. 
+The reasons for this setup are :
+
+\begin{itemize}
+  \item The distilled model learns a more universal language representation by leveraging the cross-lexicalized-delexicalized data.
+  \item The student model will achieve comparable accuracy in an in-domain setting.
+  \item Since the proposed framework is quite general, where the data of the student model is independent of the teacher model, this possibly can enable the transfer of knowledge across domains.
+\end{itemize}
+
 
 
 To the best of my knowledge this hasn't been done before.
 
-\subsection{Discussion of learning temperatures}
+\subsubsection{EMA}
+\subsubsection{Semi Supervised}
+\subsubsection{Weight Tuning}
+
+
+
+
 
 \subsection{Mean teacher}
 
