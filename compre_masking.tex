@@ -44,7 +44,10 @@
 
 \section{Problem Statement}
 
-The task of natural language inference is considered to be an integral part of natural language understanding. In this task, which can be seen as a particular instance of recognizing textual entailment \citep*{fyodorov2000natural,condoravdi2003entailment,bos2005recognising,maccartney2009extended,dagan2013recognizing}, a model is asked to classify if a given sentence (premise) \textit{entails}, \textit{contradicts} or is \textit{neutral} given a second sentence (hypothesis). Several data sets have been created which have enabled the advancement of natural language inference (and fact verification) like SNLI \citep*{bowman2015large} MNLI \citep*{williams2017broad}, FEVER \citep*{thorne2018fever}, and FNC \citep*{pomerleau2017fake}. The state-of-the-art  performance in many of these datasets domains have been achieved by many neural network methods \citep*{kim2018semantic}.
+The task of natural language inference is considered to be an integral part of natural language understanding. In this task, which can be seen as a particular instance of recognizing textual entailment \citep*{fyodorov2000natural,condoravdi2003entailment,bos2005recognising,maccartney2009extended,dagan2013recognizing}, a model is asked to classify if a given sentence (premise) \textit{entails}, \textit{contradicts} or is \textit{neutral} given a second sentence (hypothesis). Several data sets have been created which have enabled the advancement of natural language inference (and fact verification) like SNLI \citep*{bowman2015large} MNLI \citep*{williams2017broad}, FEVER \citep*{thorne2018fever}, and FNC \citep*{pomerleau2017fake}. 
+\todo{Add 1 or 2 examples of premise and hypothesis here for the non-NLP members of your committee}.
+
+The state-of-the-art  performance in many of these datasets domains have been achieved by many neural network methods \citep*{kim2018semantic}.
 
 However it is known that these datasets are not devoid of biases (subtle statistical patterns in a dataset, which could have been introduced either due to the methodology of data collection or due to an inherent social bias). For example, \citep*{gururangan2018annotation} and \citep*{poliak2018hypothesis} show that biases were introduced into the MNLI dataset by certain language creation choices made by the crowd workers. 
 
@@ -66,15 +69,21 @@ In this context, the aims of my research are:
 \item I investigate the attention weights a state of the art RTE method~\cite{parikh2016decomposable} assigns to input tokens in the RTE component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., NN, NNP etc.) or their phrases, which verified my ``American Author" observation stated above.
 \item  To verify that these lexicalized models transfer poorly, I implement a domain transfer experiment where a RTE component is trained on the FEVER data, and tested on the Fake News Challenge (FNC) \citep{pomerleau2017fake} dataset. As expected, even though this method achieves high accuracy when evaluated in the same domain, the performance in the target domain is poor, marginally above chance.
 
-\item  To mitigate this dependence on lexicalized information, I experiment with several strategies for masking out names by replacing them with their semantic category, coupled with a unique identifier to mark that the same or new entities are referenced between claim and evidence. The results show that, while the performance on the FEVER dataset remains at par with that of the model trained on lexicalized data, it improves significantly when tested in the FNC dataset. Thus my experiments demonstrate that my strategy is successful in mitigating the dependency on lexical information.
+\item  To mitigate this dependence on lexicalized information, I experiment with several strategies for masking \todo{I would not call this masking any more. I think "semantic lifting" is a more general name for what you do, or aim to do}  out names by replacing them with their semantic category, coupled with a unique identifier to mark that the same or new entities are referenced between claim and evidence. The results show that, while the performance on the FEVER dataset remains at par with that of the model trained on lexicalized data, it improves significantly when tested in the FNC dataset. Thus my experiments demonstrate that my strategy is successful in mitigating the dependency on lexical information.
 
 \item I propose a framework based on fact distillation to train neural network models which can learn the underlying semantics of a given dataset and hence can be used to transfer learning across domains.
 \end{itemize}
 
+\section{Related Work}
+
+\todo{Need to add this section. You can group it in 3 subsections: (a) methods for NLI; (b) masking papers; (c) knowledge distillation. For (b) and (c) emphasize how your direction is different.}
+
 \section{Preliminary Work}
 
 
-In this section I describe several preliminary experiments I conduct to verify that models trained on lexicalized data transfer poorly across domains. In particular I investigate the attention weights a state of the art recognizing textual entailment method~\citep*{parikh2016decomposable} assigns to input tokens in the recognizing textual entailment component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., neural network, NNP etc.) or their phrases, which verify my ``American Author" observation stated above. Further I also show results from a few proposed solutions which control for unnecessary lexicalization enabling data transfer across domains.
+In this section I describe several preliminary experiments I conduct \todo{this section should use verbs in past tense, since this work is completed} to verify that models trained on lexicalized data transfer poorly across domains. In particular I investigate the attention weights a state of the art recognizing textual entailment method~\citep*{parikh2016decomposable} assigns to input tokens in the recognizing textual entailment component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., neural network, NNP etc.) or their phrases, which verify my ``American Author" observation stated above. Further I also show results from a few proposed solutions which control for unnecessary lexicalization enabling data transfer across domains.
+
+\todo{Give credit to Sandeep here. Say that this work was a collaboration with him. Be clear what was his contribution and what was yours. Otherwise, the committee will have to speculate...}
 
 
 
@@ -156,7 +165,7 @@ Importantly, 43.10\% of these noun phrases in FEVER are named entities.
 
 
 \subsection{Proposed Delexicalization Techniques}
-To mitigate the potential domain dependence introduced by these large attention weights, I propose several semantic masking techniques, which I compare with a deletion baseline.  
+To mitigate the potential domain dependence introduced by these large attention weights, I propose several semantic masking \todo{I would not call this masking any more. I think "semantic lifting" is a more general name for what you do, or aim to do} techniques, which I compare with a deletion baseline.  
 Particularly I experiment with several strategies for delexicalization, i.e., where lexical tokens are replaced (or masked) with indicators of their class. While the technique of delexicalization (or masking) has been used before~\citep*{zeman2008cross}, I have expanded it by incorporating semantic information (the assumption that meaning arises from a set of independent and discrete semantic units)~\citep*{peyrard2019simple}. In particular, I first replace named entities with their corresponding semantic tags from Stanford's CoreNLP \citep*{manning2014stanford}. 
 To keep track of which entities are referenced betIen claim and evidence sentences, I extend these tags with unique identifiers. Second, I similarly replace other word classes in the sentence (common nouns, verbs, adjectives, and adverbs)  with their super sense tags \citep*{ciaramita2003supersense}.
 
@@ -187,7 +196,7 @@ OA-NER  & {With \texttt{organization-c1}, the \texttt{misc-c1} entered commercia
 \end{tabular}
 \end{center}
 
-    \caption{ Example illustratingmy various masking techniques, compared to the original fully lexicalized data. Note that the masking tags were generated with real-world (imperfect) tools. For example, "Airbus A380" in the claim was correctly classified as \texttt{miscellaneous} by the NER tool, while ``A380" in the evidence was not, thus preventing us from taking advantage of the overlap. }
+    \caption{ Example illustrating my various masking techniques, compared to the original fully lexicalized data. Note that the masking tags were generated with real-world (imperfect) tools. For example, "Airbus A380" in the claim was correctly classified as \texttt{miscellaneous} by the NER tool, while ``A380" in the evidence was not, thus preventing us from taking advantage of the overlap. }
     \label{masking_examples}
 \end{table*}
 
@@ -335,6 +344,10 @@ Also this work touches upon questions about which granularity offers a good appr
 
 These results, which were published as \citep*{emnlp2019sandeep}, demonstrate that my masking strategy is successful in mitigating the dependency on domain-specific lexical information and aids in certain domain transfer transitions. 
 
+\section{Published/Submitted Papers}
+
+\todo{Briefly discuss the 3 papers you published/submitted on this topic, including the LREC one. Add a brief note that you also co-authored another paper (the quant adjs), which is not discussed here.}
+
  
 \section{Future Work/Plan for Dissertation}
 In the previous sections I investigate the need for delexicalization techniques to reduce the potential dependence of neural network methods on lexicalized items in natural language inference tasks. My experiments show that delexicalization achieves comparative results {\em in-domain} with the state of the art methods trained on lexicalized data. Importantly, I show that methods trained on delexicalized data transfer considerably better {\em out-of-domain}, which  confirms the importance of delexicalization in natural language inference tasks for domain transferability.
@@ -351,7 +364,7 @@ Knowledge distillation is a training procedure where one neural network method f
 
 \subsection{Related Work}
 
-
+\todo{Move to the actual related work section}
 Many previous methods using knowledge distillation focus on task-specific knowledge distillation, which transfers knowledge from a single-task teacher to its student. Tzeng et al.\citep*{tzeng2015simultaneous}, use data distillation in a visual domain adaptation setting in order to transfer class correlations between domains. 
 
 Papernot et al. \citep*{papernot2016distillation} use distillation as a defense to adversarial perturbations against deep neural networks. More recently in Sun et al. \citep*{sun2019patient} , Jiao et al. \citep*{jiao2019tinybert},  Zhao et al.\citep*{zhao2019extreme}, and Tang et al. \citep*{tang2019distilling} the knowledge distillation algorithms are specially designed for transformer-based architectures, and the student models are adapted from teacher models. Liu et al. \citep*{liu2019attentive}, explore the knowledge distillation method under the setting of multi-task learning \citep*{caruana1997multitask} \citep*{baxter2000model}.
@@ -361,7 +374,10 @@ Papernot et al. \citep*{papernot2016distillation} use distillation as a defense 
 
 \subsection{Proposed Solution}
 
-Most of the research so far in knowledge distillation has thus been about transferring the form of model while keeping the same knowledge. In this work I propose to use the same data distillation framework, but aim to keep the model stable and transfer the underlying data semantics instead. This proposal is based on the assumption that a more abstract view of the knowledge contained in a dataset, once freed from particular instantiations related to a given domain, can be used to transfer learning across domains. I propose to distill the student model from one or more teachers where the teacher model will be trained on the lexicalized version of a given dataset, while the student model will be trained from the corresponding delexicalized version (refer masking/delexicalization techniques mentioned above) of the same dataset. The reasons for this setup are as follows:
+\todo{Briefly discuss the MT architecture. Include a figure if you can.}
+
+Most of the research so far in knowledge distillation has thus been about transferring the form of model while keeping the same knowledge. In this work I propose to use the same data distillation framework, but aim to keep the model stable and transfer the underlying data semantics instead. \todo{This is not a correct claim. While it is true that in the prelim work you did data distillation, now you plan to do both data and model distillation. The teacher/student arch. distills the teacher model into the student one. Emphasize that the current literature chooses one direction. Your novel hypothesis is that doing both is better.}
+This proposal is based on the assumption that a more abstract view of the knowledge contained in a dataset, once freed from particular instantiations related to a given domain, can be used to transfer learning across domains. I propose to distill the student model from one or more teachers where the teacher model will be trained on the lexicalized version of a given dataset, while the student model will be trained from the corresponding delexicalized version (refer masking/delexicalization techniques mentioned above) of the same dataset. The reasons for this setup are as follows:
 
 \begin{itemize}
   \item The distilled model learns a more universal language representation by leveraging the cross-lexicalized-delexicalized data.
