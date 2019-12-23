@@ -1,26 +1,8 @@
-\documentclass[compsoc,onecolumn]{IEEEtran}
+\documentclass{article}
+%\documentclass[compsoc,onecolumn]{IEEEtran}
 % *** GRAPHICS RELATED PACKAGES ***
 %
 
-\ifCLASSINFOpdf
-  \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  \graphicspath{{fig/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png, .bmp}
-\else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
-
-   \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-   \graphicspath{{eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-   \DeclareGraphicsExtensions{.eps}
-\fi
 \usepackage{natbib}
 \usepackage[bookmarks=false]{hyperref}
 \usepackage{mathtools}
@@ -46,7 +28,7 @@
 \usepackage{color}
 \newcommand\todo[1]{\textcolor{blue}{(todo : #1)}}
 \DontPrintSemicolon
-
+\usepackage[utf8]{inputenc}
 %\usepackage{algorithm2e}
 %\usepackage{amsmath}
 %\usepackage[linesnumbered,ruled]{algorithm2e}
@@ -62,16 +44,15 @@
 \doublespacing
 \begin{document}
 
-\title{Using Knowledge Distillation As A Possible Solution For The Domain Transfer Problem In Fact Verification }
+\title{Using Knowledge Distillation As A Possible Solution For The Domain Transfer Problem In Fact Verification \\
+\large{A Dissertation Proposal Submitted In Partial Fulfillment Of PhD Comprehensive Exam \\
+ Fall 2019}}
 
 % author names and affiliations
 % use a multiple column layout for up to two different
 % affiliations
 
-\author{\IEEEauthorblockN{}
-\IEEEauthorblockA{Mithun Paul\\
-}
-}
+\author{Mithun Paul\\}
 
 
 % use for special paper notices
@@ -80,7 +61,7 @@
 % make the title area
 \maketitle
 
-
+\tableofcontents
 
 \section{Problem Statement}
 Neural networks (NNs)  play a key role in in most natural language processing systems with state of the art (SOA) performance \citep*{devlin2018bert, sun2018improving,bohnet2018morphosyntactic} especially in the domain of recognizing textual entailment \citep*{kim2018semantic}, fake news detection \citep*{baird2017talos} and fact verification \citep*{nie2018combining}.
@@ -374,7 +355,7 @@ Most of the research so far in knowledge distillation has thus been about transf
   \item Since the proposed framework is quite general, where the data of the student model is independent of the teacher model, this possibly can enable the transfer of knowledge across domains.
 \end{itemize}
 
-Motivated by the above reasons, I plan to apply knowledge distillation towards solving the domain- transfer problem mentioned above. This is inspired from the idea that datasets in similar domains are possibly related by means of a common low dimensional semantic representation. I propose that using the shared structure within a student teacher model could possibly help by assuming some connections over the underlying data distribution of different datasets. Although many of the recent KD works \citep*{jiao2019tinybert,tang2019distilling,zhao2019extreme}  employ a  pretrained language model as the underlying neural network architecture, I plan to choose simple attention based models adapted from ~\citep*{parikh2016decomposable} and \citep*{chen2016enhanced} . The reasons are:
+Motivated by the above reasons, I plan to apply knowledge distillation towards solving the domain- transfer problem mentioned above. This is inspired from the idea that datasets in similar domains are possibly related by means of a common low dimensional semantic representation. I propose that using the shared structure within a student teacher model could possibly help by assuming some connections over the underlying data distribution of different datasets. Although many of the recent KD works \citep*{jiao2019tinybert,tang2019distilling,zhao2019extreme}  employ a  pretrained language model as the underlying neural network architecture, I plan to choose simple attention based models adapted from ~\citep*{parikh2016decomposable} and \citep*{chen2016enhanced}. The reasons are:
 
 \begin{itemize}
   \item Both these models have been proven to achieve state of the art results in natural language inference related tasks especially due to their inherent attention mechanisms.
