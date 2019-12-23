@@ -378,20 +378,6 @@ Motivated by the above reasons, I plan to apply knowledge distillation towards s
 
 
 
-\subsubsection{Proposed Experiment Set-Up}
-\todo{write about consistency loss, classification loss}
-
-\subsubsection{Experiment Variations}
-\begin {enumerate}
-\item {EMA}
-\item{Semi Supervised}
-\item{Weight Tuning}
-
-\item{Multiple teachers}
-\end {enumerate}
-
-
-
 \section{Conclusion}
 
  In this work I investigate the need for delexicalization techniques to reduce the potential dependence of NN methods on lexicalized items in NLI tasks. I specifically explore two masking techniques to delexicalize datasets: the first one replaces the lexical entities in an overlap-aware manner, and the second one additionally incorporates semantic lifting of nouns and verbs. My experiments show that delexicalization achieves comparative results {\em in-domain} with the state of the art methods trained on lexicalized data. Importantly, I show that methods trained on delexicalized data transfer considerably better {\em out-of-domain}, which  confirms the importance of delexicalization in NLI tasks for domain transferability. 
