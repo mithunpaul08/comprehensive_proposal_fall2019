@@ -351,16 +351,22 @@ In this section I describe a few proposed solutions where I explore combining de
 
 
 \subsection{Knowledge Distillation of Data}
-Knowledge distillation is a training procedure where one neural network method functions as a \textit{teacher} and transfers its knowledge to a \textit{student} model. While the suggestion for knowledge distillation was introduced in \citep*{ba2014deep} it was formally introduced in \citep*{hinton2015distilling}. The motivation behind knowledge distillation is to 
+Knowledge distillation is a training procedure where one neural network method functions as a \textit{teacher} and transfers its knowledge to a \textit{student} model. While the intuition for knowledge distillation was suggested in \citep*{ba2014deep} it was formally introduced in \citep*{hinton2015distilling}. The motivation behind knowledge distillation is to reduce computation complexity of deep neural network architectures to smaller ones. This facilitates the deployment of such architectures in memory constrained devices. The intuition behind knowledge distillation is that a given deep learning model, when it learns to discriminate between a large number of classes, also assigns probabilities to incorrect answers, which are often overlooked. While these probabilities are small for a given incorrect class (and hence not chosen as the right answer for that data point), some of these probabilities are much larger than those assigned to some other incorrect classes. These relative probabilities of incorrect answers are then used  to learn about how the model tends to generalize. So when knowledge is distilled from a large model into a smaller one, the smaller model can be trained to generalize in the same way as the large model. The assumption is that if the larger model generalizes well, a smaller model trained to generalize in the same way will do better when compared to another small model that was trained on much lesser data than the original large model. To enable this transfer the knowledge distillation models (also known as teacher student models) use the class probabilities of the larger model (frequently referred to as \textit{soft targets}) to train the smaller model. Further, when the larger model consists of an ensemble of models, an arithmetic mean or geometric mean of their individual predictive distributions are used as soft targets. In many knowledge distillation architectures the logits (inputs to the final sotmax) rather than the probabilities produced by the softmax (the correct answers) are the targets for learning the small model. The optimization is then typically achieved by minimizing the squared difference (as opposed to maximizing the average log probability of correct answers that a stand alone model would have used) between the logits of the larger and smaller models. The aim thus of distillation architectures is to \textbf{\textit{raise the temperature}} of the final softmax until the larger model produces a suitably soft set of targets. Then the same \textit{high temperature} is used to train the smaller model to match these soft targets. Typically, while the datasets used to train both the larger and smaller models are the training data itself, there are variations where smaller model is trained on an unlabeled version of the same training data (i.e.,unsupervised training).
 
 
-\
-\subsection{Discussion of learning temperatures}
+\subsection{Related Work}
+
+\todo: find top 5 citations of hinton paper
+
+Many previous methods using knowledge distillation (KD) focus on task-specific KD, which transfers knowledge from a single-task teacher to its student. More recently in Sun et al. \citep*{seo2016bidirectional} , Jiao et al. \citep*{jiao2019tinybert}, and Zhao et al.\citep*{zhao2019extreme}, Tang et al. \citep*{tang2019distilling} the KD algorithms are specially designed
+for transformer-based architectures, and the student models are adapted from teacher models. On the other hand Liu et al. \citep*{liu2019attentive}, explore the knowledge distillation method under the setting of multi-task learning \citep*{caruana1997multitask} \citep*{baxter2000model}.
+
+
+
 
 \subsection{Proposed Solution}
 
-In this work, I propose to distill the student model from one or more teachers. Specifically, the teacher model will learn from the lexicalized version of a given dataset, while the student model will from the corresponding delexicalized version. 
-The reasons for this setup are :
+Most of the research so far in knowledge distillation has thus been about transferring the form of model while keeping the same knowledge. In this work I propose to use the same data distillation framework, but aim to keep the model stable and transfer the data semantics instead. This proposal is based on the assumption that a more abstract view of the knowledge contained in a dataset, once freed from particular instantiations related to a given domain, can be used to transfer learning across domains. I propose to distill the student model from one or more teachers where the teacher model will be trained on the lexicalized version of a given dataset, while the student model will be trained from the corresponding delexicalized version (refer masking/delexicalization techniques mentioned above) of the same dataset. The reasons for this setup are as follows:
 
 \begin{itemize}
   \item The distilled model learns a more universal language representation by leveraging the cross-lexicalized-delexicalized data.
@@ -372,24 +378,21 @@ Motivated by the above reasons, I plan to apply knowledge distillation towards s
 
 \begin{itemize}
   \item Both these models have been proven to achieve state of the art results in natural language inference related tasks especially due to their inherent attention mechanisms.
-  \item Our approach is more data driven and hence simpler transparent models will enable me to focus on the important semantic transitions (e.g.,choice of different masking methods, influence of KD in domain transfer, etc.) required for data distillation.
+  \item Our approach is more data driven and hence simpler transparent models will enable me to focus on the important semantic transitions needed (e.g.,choice of different masking methods) and their influence in transferring knowledge across domains.
  \end{itemize}
 
-\subsection{Related Work}
+To the best of my knowledge, my proposed method, a new variant of distillation for learning underlying data semantics used in domain distillation, is novel and has not been done before. Instead of transferring knowledge between different architectures I propose to use the knowledge extracted from a lexicalized dataset in improving a deep neural network which by itself also learns from the corresponding delexicalized dataset.
 
-\todo: find top 5 citations of hinton paper
-
-Many previous methods using knowledge distillation (KD) focus on task-specific KD, which transfers knowledge from a single-task teacher to its student. More recently in Sun et al. \citep*{seo2016bidirectional} , Jiao et al. \citep*{jiao2019tinybert}, and Zhao et al.\citep*{zhao2019extreme}, Tang et al. \citep*{tang2019distilling} the KD algorithms are specially designed
-for transformer-based architectures, and the student models are adapted from teacher models. On the other hand Liu et al. \citep*{liu2019attentive}, explore the knowledge distillation method under the setting of multi-task learning \citep*{caruana1997multitask} \citep*{baxter2000model}.
-
-To the best of my knowledge no similar work on using student teacher architecture for data distillation has been done before.
 \subsubsection{Proposed Experiment Set-Up}
+\todo{consistency loss, classification loss}
 
 \subsubsection{Experiment Variations}
 
 \subsubsection{EMA}
 \subsubsection{Semi Supervised}
 \subsubsection{Weight Tuning}
+
+\subsubsection{Multiple teachers}
 
 
 

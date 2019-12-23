@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  22 DEC 2019 18:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  22 DEC 2019 19:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -786,10 +786,10 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9.53561> not available
 LaTeX Font Info:    Calculating math sizes for size <9.53561> on input line 130
 .
 LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 130.
+ [3]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9.53561> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 160.
- [3]
-<histogram_2.jpg, id=150, 422.57875pt x 308.15125pt>
+<histogram_2.jpg, id=151, 422.57875pt x 308.15125pt>
 File: histogram_2.jpg Graphic file (type jpg)
 <use histogram_2.jpg>
 Package pdftex.def Info: histogram_2.jpg  used on input line 182.
@@ -970,7 +970,7 @@ Overfull \hbox (4.32472pt too wide) in paragraph at lines 264--265
 []|\OT1/ppl/b/n/9.53561 51.77%| 
  []
 
-[6]
+[6] [7]
 Underfull \hbox (badness 10000) in paragraph at lines 294--294
 []|\OT1/ppl/b/n/9.53561 MNLI
  []
@@ -1015,7 +1015,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 294--295
 \OT1/ppl/b/n/9.53561 delex-i-cal-
  []
 
-[7]
+
 Overfull \hbox (3.46501pt too wide) in paragraph at lines 314--314
 []|\OT1/ppl/b/n/9.53561 MedNLI| 
  []
@@ -1075,27 +1075,23 @@ Overfull \hbox (1.01219pt too wide) in paragraph at lines 335--336
 []|\OT1/ppl/m/n/9.53561 75.26%| 
  []
 
-[8] [9] (./compre_masking.bbl [10] [11])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 429.
- [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 429.
+[8] [9] [10] (./compre_masking.bbl [11] [12])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 432.
+ [13]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 432.
  (./compre_masking.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 429.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 429.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 429.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 432.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 432.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 432.
  ) 
 Here is how much of TeX's memory you used:
- 11187 strings out of 492649
- 175508 string characters out of 6129622
- 287468 words of memory out of 5000000
+ 11189 strings out of 492649
+ 175527 string characters out of 6129622
+ 288480 words of memory out of 5000000
  14827 multiletter control sequences out of 15000+600000
- 47910 words of font info for 118 fonts, out of 8000000 for 9000
+ 48583 words of font info for 119 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 36i,11n,39p,1552b,514s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,11n,39p,2900b,514s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1109,13 +1105,13 @@ texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2018/texmf-d
 ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2018/texmf-dist/fon
 ts/type1/urw/helvetic/uhvro8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/typ
 e1/urw/palatino/uplb8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/
-palatino/uplr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/palatin
-o/uplri8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/zapfding/uzdr
-.pfb>
-Output written on compre_masking.pdf (12 pages, 199426 bytes).
+palatino/uplbi8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/palati
+no/uplr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/palatino/uplr
+i8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
+Output written on compre_masking.pdf (13 pages, 211884 bytes).
 PDF statistics:
- 337 PDF objects out of 1000 (max. 8388607)
- 309 compressed objects within 4 object streams
- 84 named destinations out of 1000 (max. 500000)
+ 348 PDF objects out of 1000 (max. 8388607)
+ 318 compressed objects within 4 object streams
+ 85 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
