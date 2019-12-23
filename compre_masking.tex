@@ -60,7 +60,7 @@
 \doublespacing
 \begin{document}
 
-\title{On the Importance of Delexicalization for Fact Verification}
+\title{Using Knowledge Distillation As A Possible Solution For The Domain Transfer Problem In Fact Verification }
 
 % author names and affiliations
 % use a multiple column layout for up to two different
@@ -365,9 +365,15 @@ The reasons for this setup are :
   \item Since the proposed framework is quite general, where the data of the student model is independent of the teacher model, this possibly can enable the transfer of knowledge across domains.
 \end{itemize}
 
+Motivated by the above reasons, I plan to apply knowledge distillation towards solving the domain- transfer problem mentioned above. This is inspired from the idea that datasets in similar domains are possibly related by means of a common low dimensional semantic representation. I propose that using the shared structure within a student teacher model could possibly help by assuming some connections over the underlying data distribution of different datasets. Although many of the recent KD works \citep*{jiao2019tinybert,tang2019distilling,zhao2019extreme}  employ a  pretrained language model as the underlying NN architecture, I plan to choose simple attention based models adapted from ~\citep*{parikh2016decomposable} and \citep*{chen2016enhanced} . The reasons are:
+
+\begin{itemize}
+  \item Both these models have been proven to achieve state of the art results in NLI related tasks especially due to their inherent attention mechanisms.
+  \item Our approach is more data driven and hence simpler transparent models will enable me to focus on the important semantic transitions (e.g.,choice of different masking methods, influence of KD in domain transfer, etc.) required for data distillation.
+ \end{itemize}
 
 
-To the best of my knowledge this hasn't been done before.
+To the best of my knowledge, similar work on using student teacher architecture for data distillation has not been done before.
 
 \subsubsection{EMA}
 \subsubsection{Semi Supervised}
