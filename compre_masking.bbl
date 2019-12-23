@@ -1,46 +1,9 @@
-\begin{thebibliography}{39}
+\begin{thebibliography}{35}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
-
-\bibitem[Devlin et~al.(2018)Devlin, Chang, Lee, and Toutanova]{devlin2018bert}
-Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
-\newblock Bert: Pre-training of deep bidirectional transformers for language
-  understanding.
-\newblock \emph{arXiv preprint arXiv:1810.04805}, 2018.
-
-\bibitem[Sun et~al.(2018)Sun, Yu, Yu, and Cardie]{sun2018improving}
-Kai Sun, Dian Yu, Dong Yu, and Claire Cardie.
-\newblock Improving machine reading comprehension with general reading
-  strategies.
-\newblock \emph{arXiv preprint arXiv:1810.13441}, 2018.
-
-\bibitem[Bohnet et~al.(2018)Bohnet, McDonald, Simoes, Andor, Pitler, and
-  Maynez]{bohnet2018morphosyntactic}
-Bernd Bohnet, Ryan McDonald, Goncalo Simoes, Daniel Andor, Emily Pitler, and
-  Joshua Maynez.
-\newblock Morphosyntactic tagging with a meta-bilstm model over context
-  sensitive token encodings.
-\newblock \emph{arXiv preprint arXiv:1805.08237}, 2018.
-
-\bibitem[Kim et~al.(2018)Kim, Hong, Kang, and Kwak]{kim2018semantic}
-Seonhoon Kim, Jin-Hyuk Hong, Inho Kang, and Nojun Kwak.
-\newblock Semantic sentence matching with densely-connected recurrent and
-  co-attentive information.
-\newblock \emph{arXiv preprint arXiv:1805.11360}, 2018.
-
-\bibitem[Baird et~al.(2017)Baird, Sibley, and Pan]{baird2017talos}
-Sean Baird, Doug Sibley, and Yuxi Pan.
-\newblock Talos targets disinformation with fake news challenge victory.
-\newblock \emph{Fake News Challenge}, 2017.
-
-\bibitem[Nie et~al.(2018)Nie, Chen, and Bansal]{nie2018combining}
-Yixin Nie, Haonan Chen, and Mohit Bansal.
-\newblock Combining fact extraction and verification with neural semantic
-  matching networks.
-\newblock \emph{arXiv preprint arXiv:1811.07039}, 2018.
 
 \bibitem[Fyodorov et~al.(2000)Fyodorov, Winter, and
   Francez]{fyodorov2000natural}
@@ -78,19 +41,6 @@ Ido Dagan, Dan Roth, Mark Sammons, and Fabio~Massimo Zanzotto.
 \newblock \emph{Synthesis Lectures on Human Language Technologies}, 6\penalty0
   (4):\penalty0 1--220, 2013.
 
-\bibitem[Thorne et~al.(2018)Thorne, Vlachos, Christodoulopoulos, and
-  Mittal]{thorne2018fever}
-James Thorne, Andreas Vlachos, Christos Christodoulopoulos, and Arpit Mittal.
-\newblock Fever: a large-scale dataset for fact extraction and verification.
-\newblock \emph{arXiv preprint arXiv:1803.05355}, 2018.
-
-\bibitem[Gururangan et~al.(2018)Gururangan, Swayamdipta, Levy, Schwartz,
-  Bowman, and Smith]{gururangan2018annotation}
-Suchin Gururangan, Swabha Swayamdipta, Omer Levy, Roy Schwartz, Samuel~R
-  Bowman, and Noah~A Smith.
-\newblock Annotation artifacts in natural language inference data.
-\newblock \emph{arXiv preprint arXiv:1803.02324}, 2018.
-
 \bibitem[Bowman et~al.(2015)Bowman, Angeli, Potts, and
   Manning]{bowman2015large}
 Samuel~R Bowman, Gabor Angeli, Christopher Potts, and Christopher~D Manning.
@@ -103,9 +53,28 @@ Adina Williams, Nikita Nangia, and Samuel~R Bowman.
   inference.
 \newblock \emph{arXiv preprint arXiv:1704.05426}, 2017.
 
+\bibitem[Thorne et~al.(2018)Thorne, Vlachos, Christodoulopoulos, and
+  Mittal]{thorne2018fever}
+James Thorne, Andreas Vlachos, Christos Christodoulopoulos, and Arpit Mittal.
+\newblock Fever: a large-scale dataset for fact extraction and verification.
+\newblock \emph{arXiv preprint arXiv:1803.05355}, 2018.
+
 \bibitem[Pomerleau and Rao(2017)]{pomerleau2017fake}
 Dean Pomerleau and Delip Rao.
 \newblock Fake news challenge, 2017.
+
+\bibitem[Kim et~al.(2018)Kim, Hong, Kang, and Kwak]{kim2018semantic}
+Seonhoon Kim, Jin-Hyuk Hong, Inho Kang, and Nojun Kwak.
+\newblock Semantic sentence matching with densely-connected recurrent and
+  co-attentive information.
+\newblock \emph{arXiv preprint arXiv:1805.11360}, 2018.
+
+\bibitem[Gururangan et~al.(2018)Gururangan, Swayamdipta, Levy, Schwartz,
+  Bowman, and Smith]{gururangan2018annotation}
+Suchin Gururangan, Swabha Swayamdipta, Omer Levy, Roy Schwartz, Samuel~R
+  Bowman, and Noah~A Smith.
+\newblock Annotation artifacts in natural language inference data.
+\newblock \emph{arXiv preprint arXiv:1803.02324}, 2018.
 
 \bibitem[Poliak et~al.(2018)Poliak, Naradowsky, Haldar, Rudinger, and
   Van~Durme]{poliak2018hypothesis}
@@ -113,36 +82,6 @@ Adam Poliak, Jason Naradowsky, Aparajita Haldar, Rachel Rudinger, and Benjamin
   Van~Durme.
 \newblock Hypothesis only baselines in natural language inference.
 \newblock \emph{arXiv preprint arXiv:1805.01042}, 2018.
-
-\bibitem[Schuster et~al.(2019)Schuster, Shah, Yeo, Filizzola, Santus, and
-  Barzilay]{schuster2019towards}
-Tal Schuster, Darsh~J Shah, Yun Jie~Serene Yeo, Daniel Filizzola, Enrico
-  Santus, and Regina Barzilay.
-\newblock Towards debiasing fact verification models.
-\newblock \emph{arXiv preprint arXiv:1908.05267}, 2019.
-
-\bibitem[Suntwal et~al.(2019)Suntwal, Paul, Sharp, and
-  Surdeanu]{emnlp2019sandeep}
-Sandeep Suntwal, Mithun Paul, Rebecca Sharp, and Mihai Surdeanu.
-\newblock On the importance of delexicalization for fact verification.
-\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
-  Natural Language Processing and the 9th International Joint Conference on
-  Natural Language Processing, (Short Papers)}, Hong Kong, November 2019.
-  Association for Computational Linguistics.
-\newblock URL
-  \url{http://clulab.cs.arizona.edu/papers/emnlp_2019_masking_suntwal_etal.pdf}.
-
-\bibitem[Zeman and Resnik(2008)]{zeman2008cross}
-Daniel Zeman and Philip Resnik.
-\newblock Cross-language parser adaptation between related languages.
-\newblock In \emph{Proceedings of the IJCNLP-08 Workshop on NLP for Less
-  Privileged Languages}, 2008.
-
-\bibitem[Peyrard(2019)]{peyrard2019simple}
-Maxime Peyrard.
-\newblock A simple theoretical model of importance for summarization.
-\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
-  for Computational Linguistics}, pages 1059--1073, 2019.
 
 \bibitem[Parikh et~al.(2016)Parikh, T{\"a}ckstr{\"o}m, Das, and
   Uszkoreit]{parikh2016decomposable}
@@ -156,11 +95,28 @@ Qian Chen, Xiaodan Zhu, Zhenhua Ling, Si~Wei, Hui Jiang, and Diana Inkpen.
 \newblock Enhanced lstm for natural language inference.
 \newblock \emph{arXiv preprint arXiv:1609.06038}, 2016.
 
+\bibitem[Romanov and Shivade(2018)]{romanov2018lessons}
+Alexey Romanov and Chaitanya Shivade.
+\newblock Lessons from natural language inference in the clinical domain.
+\newblock \emph{arXiv preprint arXiv:1808.06752}, 2018.
+
 \bibitem[Bahdanau et~al.(2014)Bahdanau, Cho, and Bengio]{bahdanau2014neural}
 Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
 \newblock Neural machine translation by jointly learning to align and
   translate.
 \newblock \emph{arXiv preprint arXiv:1409.0473}, 2014.
+
+\bibitem[Zeman and Resnik(2008)]{zeman2008cross}
+Daniel Zeman and Philip Resnik.
+\newblock Cross-language parser adaptation between related languages.
+\newblock In \emph{Proceedings of the IJCNLP-08 Workshop on NLP for Less
+  Privileged Languages}, 2008.
+
+\bibitem[Peyrard(2019)]{peyrard2019simple}
+Maxime Peyrard.
+\newblock A simple theoretical model of importance for summarization.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics}, pages 1059--1073, 2019.
 
 \bibitem[Manning et~al.(2014)Manning, Surdeanu, Bauer, Finkel, Bethard, and
   McClosky]{manning2014stanford}
@@ -191,6 +147,23 @@ George~A Miller, Richard Beckwith, Christiane Fellbaum, Derek Gross, and
 \newblock Introduction to wordnet: An on-line lexical database.
 \newblock \emph{International journal of lexicography}, 3\penalty0
   (4):\penalty0 235--244, 1990.
+
+\bibitem[Ling and Weld(2012)]{ling2012fine}
+Xiao Ling and Daniel~S Weld.
+\newblock Fine-grained entity recognition.
+\newblock In \emph{Twenty-Sixth AAAI Conference on Artificial Intelligence},
+  2012.
+
+\bibitem[Suntwal et~al.(2019)Suntwal, Paul, Sharp, and
+  Surdeanu]{emnlp2019sandeep}
+Sandeep Suntwal, Mithun Paul, Rebecca Sharp, and Mihai Surdeanu.
+\newblock On the importance of delexicalization for fact verification.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing and the 9th International Joint Conference on
+  Natural Language Processing, (Short Papers)}, Hong Kong, November 2019.
+  Association for Computational Linguistics.
+\newblock URL
+  \url{http://clulab.cs.arizona.edu/papers/emnlp_2019_masking_suntwal_etal.pdf}.
 
 \bibitem[Ba and Caruana(2014)]{ba2014deep}
 Jimmy Ba and Rich Caruana.
