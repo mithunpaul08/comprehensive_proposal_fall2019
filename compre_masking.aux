@@ -29,12 +29,12 @@
 \citation{williams2017broad}
 \citation{thorne2018fever}
 \citation{pomerleau2017fake}
-\providecommand \oddpage@label [2]{}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Problem Statement}{1}{section.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Related Work}{1}{subsection.1.1}}
 \citation{gururangan2018annotation}
 \citation{poliak2018hypothesis}
 \citation{schuster2019towards}
+\providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Problem Statement}{1}{section.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Related Work}{1}{subsection.1.1}}
 \citation{gururangan2018annotation}
 \citation{emnlp2019sandeep}
 \citation{dagan2013recognizing}
@@ -43,16 +43,18 @@
 \citation{zeman2008cross}
 \citation{peyrard2019simple}
 \citation{parikh2016decomposable}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Preliminary Work}{2}{section.2}}
 \citation{thorne2018fever}
 \citation{pomerleau2017fake}
 \citation{parikh2016decomposable}
 \citation{chen2016enhanced}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Preliminary Work}{2}{section.2}}
 \citation{pomerleau2017fake}
 \citation{thorne2018fever}
 \citation{thorne2018fever}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Experiment Set-Up}{3}{subsection.2.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Datasets}{3}{subsection.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Cross-domain Labels}{3}{subsubsection.2.2.1}}
+\newlabel{sec:crossdomain}{{2.2.1}{3}{Cross-domain Labels}{subsubsection.2.2.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Label distribution for the FEVER and FNC datasets. I consider the \textit  {agree} and \textit  {disagree} FNC labels as equivalent to the \textit  {support} and \textit  {refute} labels in FEVER. The FNC \textit  {not enough info (NEI)} label is listed below the more fine-grained \textit  {discuss} and \textit  {unrelated} FEVER labels. \relax }}{3}{table.caption.1}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{tab:data}{{1}{3}{Label distribution for the FEVER and FNC datasets. I consider the \textit {agree} and \textit {disagree} FNC labels as equivalent to the \textit {support} and \textit {refute} labels in FEVER. The FNC \textit {not enough info (NEI)} label is listed below the more fine-grained \textit {discuss} and \textit {unrelated} FEVER labels. \relax }{table.caption.1}{}}
@@ -60,8 +62,6 @@
 \citation{zeman2008cross}
 \citation{manning2014stanford}
 \citation{ciaramita2003supersense}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Cross-domain Labels}{4}{subsubsection.2.2.1}}
-\newlabel{sec:crossdomain}{{2.2.1}{4}{Cross-domain Labels}{subsubsection.2.2.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Error Analysis of Cross-Domain Attention}{4}{subsection.2.3}}
 \newlabel{attention_analysis}{{2.3}{4}{Error Analysis of Cross-Domain Attention}{subsection.2.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Proposed Solutions}{4}{subsection.2.4}}
@@ -73,16 +73,29 @@
 \newlabel{masking_techniques}{{2.4.1}{5}{Masking Techniques}{subsubsection.2.4.1}{}}
 \citation{ciaramita2003supersense}
 \citation{miller1990introduction}
+\citation{thorne2018fever}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces  Example illustratingmy various masking techniques, compared to the original fully lexicalized data. Note that the masking tags were generated with real-world (imperfect) tools. For example, "Airbus A380" in the claim was correctly classified as \texttt  {miscellaneous} by the NER tool, while ``A380" in the evidence was not, thus preventing us from taking advantage of the overlap. \relax }}{6}{table.caption.3}}
 \newlabel{masking_examples}{{2}{6}{Example illustratingmy various masking techniques, compared to the original fully lexicalized data. Note that the masking tags were generated with real-world (imperfect) tools. For example, "Airbus A380" in the claim was correctly classified as \texttt {miscellaneous} by the NER tool, while ``A380" in the evidence was not, thus preventing us from taking advantage of the overlap. \relax }{table.caption.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces  Various masking techniques and their performance accuracies, both in-domain and out-of-domain.\relax }}{6}{table.caption.4}}
 \newlabel{crossdomain}{{3}{6}{Various masking techniques and their performance accuracies, both in-domain and out-of-domain.\relax }{table.caption.4}{}}
 \newlabel{tab:results}{{3}{6}{Various masking techniques and their performance accuracies, both in-domain and out-of-domain.\relax }{table.caption.4}{}}
-\citation{thorne2018fever}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Results}{6}{subsection.2.5}}
+\newlabel{sec:results}{{2.5}{6}{Results}{subsection.2.5}{}}
 \citation{emnlp2019sandeep}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Results}{7}{subsection.2.5}}
-\newlabel{sec:results}{{2.5}{7}{Results}{subsection.2.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Performance of various high performing NN methods over lexicalized and delexicalized versions of the same dataset. `Matched' is the in-domain partition of the MNLI validation dataset, and `mis-matched' is the out-of-domain partition. The performance of both the methods remain close to each other in delexicalized and lexicalized versions of the same dataset, which validates that my delexicalization techniques preserve the original information of the text. \relax }}{7}{table.caption.5}}
+\newlabel{results}{{4}{7}{Performance of various high performing NN methods over lexicalized and delexicalized versions of the same dataset. `Matched' is the in-domain partition of the MNLI validation dataset, and `mis-matched' is the out-of-domain partition. The performance of both the methods remain close to each other in delexicalized and lexicalized versions of the same dataset, which validates that my delexicalization techniques preserve the original information of the text. \relax }{table.caption.5}{}}
 \citation{ba2014deep,hinton2015distilling}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces  Performance accuracies of the Decomposable Attention against various masking techniques when tested out-of-domain. The ``Train Domain'' row indicates the training datasets, while the ``Eval Domain'' indicates the domain of the corresponding evaluation partitions. For example, one experiment trained the DA method on FEVER and evaluated the resulting model on the testing partition of FNC (column 3). \relax }}{8}{table.caption.6}}
+\newlabel{results_outofdomain}{{5}{8}{Performance accuracies of the Decomposable Attention against various masking techniques when tested out-of-domain. The ``Train Domain'' row indicates the training datasets, while the ``Eval Domain'' indicates the domain of the corresponding evaluation partitions. For example, one experiment trained the DA method on FEVER and evaluated the resulting model on the testing partition of FNC (column 3). \relax }{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Performance accuracies of the Decomposable Attention against various masking techniques when tested in-domain for FNC and FEVER datasets. The ``Lexicalized" row shows the accuracies when DA was trained using the corresponding lexicalized data. This demonstrates that while delexicalization with OA-NER maintains the performance, the addition of Super Sense tags reduces the accuracy, emphasizing the fact that the amount of granularity to use is still an open problem.\relax }}{8}{table.caption.7}}
+\newlabel{sstag}{{6}{8}{Performance accuracies of the Decomposable Attention against various masking techniques when tested in-domain for FNC and FEVER datasets. The ``Lexicalized" row shows the accuracies when DA was trained using the corresponding lexicalized data. This demonstrates that while delexicalization with OA-NER maintains the performance, the addition of Super Sense tags reduces the accuracy, emphasizing the fact that the amount of granularity to use is still an open problem.\relax }{table.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Future Work/Plan for Dissertation}{8}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Knowledge Distillation of Data}{8}{subsection.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Discussion of learning temperatures}{8}{subsection.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Proposed Solution}{8}{subsection.3.3}}
+\citation{jiao2019tinybert,tang2019distilling,zhao2019extreme}
+\citation{parikh2016decomposable}
+\citation{chen2016enhanced}
 \citation{seo2016bidirectional}
 \citation{jiao2019tinybert}
 \citation{zhao2019extreme}
@@ -90,32 +103,19 @@
 \citation{liu2019attentive}
 \citation{caruana1997multitask}
 \citation{baxter2000model}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Performance of various high performing NN methods over lexicalized and delexicalized versions of the same dataset. `Matched' is the in-domain partition of the MNLI validation dataset, and `mis-matched' is the out-of-domain partition. The performance of both the methods remain close to each other in delexicalized and lexicalized versions of the same dataset, which validates that my delexicalization techniques preserve the original information of the text. \relax }}{8}{table.caption.5}}
-\newlabel{results}{{4}{8}{Performance of various high performing NN methods over lexicalized and delexicalized versions of the same dataset. `Matched' is the in-domain partition of the MNLI validation dataset, and `mis-matched' is the out-of-domain partition. The performance of both the methods remain close to each other in delexicalized and lexicalized versions of the same dataset, which validates that my delexicalization techniques preserve the original information of the text. \relax }{table.caption.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces  Performance accuracies of the Decomposable Attention against various masking techniques when tested out-of-domain. The ``Train Domain'' row indicates the training datasets, while the ``Eval Domain'' indicates the domain of the corresponding evaluation partitions. For example, one experiment trained the DA method on FEVER and evaluated the resulting model on the testing partition of FNC (column 3). \relax }}{8}{table.caption.6}}
-\newlabel{results_outofdomain}{{5}{8}{Performance accuracies of the Decomposable Attention against various masking techniques when tested out-of-domain. The ``Train Domain'' row indicates the training datasets, while the ``Eval Domain'' indicates the domain of the corresponding evaluation partitions. For example, one experiment trained the DA method on FEVER and evaluated the resulting model on the testing partition of FNC (column 3). \relax }{table.caption.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Performance accuracies of the Decomposable Attention against various masking techniques when tested in-domain for FNC and FEVER datasets. The ``Lexicalized" row shows the accuracies when DA was trained using the corresponding lexicalized data. This demonstrates that while delexicalization with OA-NER maintains the performance, the addition of Super Sense tags reduces the accuracy, emphasizing the fact that the amount of granularity to use is still an open problem.\relax }}{8}{table.caption.7}}
-\newlabel{sstag}{{6}{8}{Performance accuracies of the Decomposable Attention against various masking techniques when tested in-domain for FNC and FEVER datasets. The ``Lexicalized" row shows the accuracies when DA was trained using the corresponding lexicalized data. This demonstrates that while delexicalization with OA-NER maintains the performance, the addition of Super Sense tags reduces the accuracy, emphasizing the fact that the amount of granularity to use is still an open problem.\relax }{table.caption.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Future Work/Plan for Dissertation}{8}{section.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Knowledge Distillation of Data}{8}{subsection.3.1}}
-\citation{jiao2019tinybert,tang2019distilling,zhao2019extreme}
-\citation{parikh2016decomposable}
-\citation{chen2016enhanced}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Discussion of learning temperatures}{9}{subsection.3.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Proposed Solution}{9}{subsection.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Related Work}{9}{subsection.3.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Proposed Experiment Set-Up}{9}{subsubsection.3.4.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Experiment Variations}{9}{subsubsection.3.4.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.3}EMA}{9}{subsubsection.3.4.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.4}Semi Supervised}{9}{subsubsection.3.4.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.5}Weight Tuning}{9}{subsubsection.3.4.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Mean teacher}{9}{subsection.3.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}domain adaptation }{9}{subsection.3.6}}
 \bibstyle{unsrtnat}
 \bibdata{compre_masking}
 \bibcite{devlin2018bert}{{1}{2018}{{Devlin et~al.}}{{Devlin, Chang, Lee, and Toutanova}}}
 \bibcite{sun2018improving}{{2}{2018}{{Sun et~al.}}{{Sun, Yu, Yu, and Cardie}}}
 \bibcite{bohnet2018morphosyntactic}{{3}{2018}{{Bohnet et~al.}}{{Bohnet, McDonald, Simoes, Andor, Pitler, and Maynez}}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}EMA}{10}{subsubsection.3.3.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Semi Supervised}{10}{subsubsection.3.3.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}Weight Tuning}{10}{subsubsection.3.3.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Mean teacher}{10}{subsection.3.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}domain adaptation }{10}{subsection.3.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Proposed Solution}{10}{subsection.3.6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Amount of generalization}{10}{subsection.3.7}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{10}{section.4}}
 \bibcite{kim2018semantic}{{4}{2018}{{Kim et~al.}}{{Kim, Hong, Kang, and Kwak}}}
 \bibcite{baird2017talos}{{5}{2017}{{Baird et~al.}}{{Baird, Sibley, and Pan}}}
 \bibcite{nie2018combining}{{6}{2018}{{Nie et~al.}}{{Nie, Chen, and Bansal}}}
@@ -128,6 +128,8 @@
 \bibcite{gururangan2018annotation}{{13}{2018}{{Gururangan et~al.}}{{Gururangan, Swayamdipta, Levy, Schwartz, Bowman, and Smith}}}
 \bibcite{bowman2015large}{{14}{2015}{{Bowman et~al.}}{{Bowman, Angeli, Potts, and Manning}}}
 \bibcite{williams2017broad}{{15}{2017}{{Williams et~al.}}{{Williams, Nangia, and Bowman}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Amount of generalization}{10}{subsection.3.7}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{10}{section.4}}
 \bibcite{pomerleau2017fake}{{16}{2017}{{Pomerleau and Rao}}{{}}}
 \bibcite{poliak2018hypothesis}{{17}{2018}{{Poliak et~al.}}{{Poliak, Naradowsky, Haldar, Rudinger, and Van~Durme}}}
 \bibcite{schuster2019towards}{{18}{2019}{{Schuster et~al.}}{{Schuster, Shah, Yeo, Filizzola, Santus, and Barzilay}}}

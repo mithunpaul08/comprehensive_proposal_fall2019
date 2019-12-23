@@ -43,6 +43,8 @@
 \usepackage{varwidth}
 \SetKwInOut{Input}{Input}
 \SetKwInOut{Output}{Output}
+\usepackage{color}
+\newcommand\todo[1]{\textcolor{blue}{(todo : #1)}}
 \DontPrintSemicolon
 
 %\usepackage{algorithm2e}
@@ -349,9 +351,10 @@ In this section I describe a few proposed solutions where I explore combining de
 
 
 \subsection{Knowledge Distillation of Data}
-Knowledge distillation \citep*{ba2014deep,hinton2015distilling} is an approach where one neural network method functions as \textit{teacher} and transfers its knowledge to a \textit{student} model. Many previous methods using knowledge distillation (KD) focus on task-specific KD, which transfers knowledge from a single-task teacher to its student. More recently in Sun et al. \citep*{seo2016bidirectional} , Jiao et al. \citep*{jiao2019tinybert}, and Zhao et al.\citep*{zhao2019extreme}, Tang et al. \citep*{tang2019distilling} the KD algorithms are specially designed
-for transformer-based architectures, and the student models are adapted from teacher models. On the other hand Liu et al. \citep*{liu2019attentive}, explore the knowledge distillation method under the setting of multi-task learning \citep*{caruana1997multitask} \citep*{baxter2000model}.
+Knowledge distillation \citep*{ba2014deep,hinton2015distilling} is an approach where one neural network method functions as \textit{teacher} and transfers its knowledge to a \textit{student} model. 
 
+
+\
 \subsection{Discussion of learning temperatures}
 
 \subsection{Proposed Solution}
@@ -372,8 +375,17 @@ Motivated by the above reasons, I plan to apply knowledge distillation towards s
   \item Our approach is more data driven and hence simpler transparent models will enable me to focus on the important semantic transitions (e.g.,choice of different masking methods, influence of KD in domain transfer, etc.) required for data distillation.
  \end{itemize}
 
+\subsection{Related Work}
 
-To the best of my knowledge, similar work on using student teacher architecture for data distillation has not been done before.
+\todo: find top 5 citations of hinton paper
+
+Many previous methods using knowledge distillation (KD) focus on task-specific KD, which transfers knowledge from a single-task teacher to its student. More recently in Sun et al. \citep*{seo2016bidirectional} , Jiao et al. \citep*{jiao2019tinybert}, and Zhao et al.\citep*{zhao2019extreme}, Tang et al. \citep*{tang2019distilling} the KD algorithms are specially designed
+for transformer-based architectures, and the student models are adapted from teacher models. On the other hand Liu et al. \citep*{liu2019attentive}, explore the knowledge distillation method under the setting of multi-task learning \citep*{caruana1997multitask} \citep*{baxter2000model}.
+
+To the best of my knowledge no similar work on using student teacher architecture for data distillation has been done before.
+\subsubsection{Proposed Experiment Set-Up}
+
+\subsubsection{Experiment Variations}
 
 \subsubsection{EMA}
 \subsubsection{Semi Supervised}
@@ -387,7 +399,7 @@ To the best of my knowledge, similar work on using student teacher architecture 
 
 \subsection{domain adaptation }
 
-\subsection{Proposed Solution}
+
 
 
 In the next few months I am aiming to do more tests on state of the art models (ESIM, BERT etc) and other standard datasets (MNLI, MEDNLI etc)  to confirm that the problem/proposed hypothesis exists. Also, in my meeting with Dr. Barnard he had suggested that I should further explore the distribution of data labels to confirm the hypothesis. Dr. Morrison similarly had suggested that I should explore the meta learning frameworks like MAML and REPTILE as possible solutions. Between Jan 2020 and March 2020, I will be incorporating these suggestions along with working on a potential solution based on mean teacher framework. A detailed plan, where specific tasks are mapped to conference deadlines, is as below:
