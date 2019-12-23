@@ -1,4 +1,4 @@
-\begin{thebibliography}{37}
+\begin{thebibliography}{39}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -203,11 +203,25 @@ Geoffrey Hinton, Oriol Vinyals, and Jeff Dean.
 \newblock Distilling the knowledge in a neural network.
 \newblock \emph{arXiv preprint arXiv:1503.02531}, 2015.
 
-\bibitem[Seo et~al.(2016)Seo, Kembhavi, Farhadi, and
-  Hajishirzi]{seo2016bidirectional}
-Minjoon Seo, Aniruddha Kembhavi, Ali Farhadi, and Hannaneh Hajishirzi.
-\newblock Bidirectional attention flow for machine comprehension.
-\newblock \emph{arXiv preprint arXiv:1611.01603}, 2016.
+\bibitem[Tzeng et~al.(2015)Tzeng, Hoffman, Darrell, and
+  Saenko]{tzeng2015simultaneous}
+Eric Tzeng, Judy Hoffman, Trevor Darrell, and Kate Saenko.
+\newblock Simultaneous deep transfer across domains and tasks.
+\newblock In \emph{Proceedings of the IEEE International Conference on Computer
+  Vision}, pages 4068--4076, 2015.
+
+\bibitem[Papernot et~al.(2016)Papernot, McDaniel, Wu, Jha, and
+  Swami]{papernot2016distillation}
+Nicolas Papernot, Patrick McDaniel, Xi~Wu, Somesh Jha, and Ananthram Swami.
+\newblock Distillation as a defense to adversarial perturbations against deep
+  neural networks.
+\newblock In \emph{2016 IEEE Symposium on Security and Privacy (SP)}, pages
+  582--597. IEEE, 2016.
+
+\bibitem[Sun et~al.(2019)Sun, Cheng, Gan, and Liu]{sun2019patient}
+Siqi Sun, Yu~Cheng, Zhe Gan, and Jingjing Liu.
+\newblock Patient knowledge distillation for bert model compression.
+\newblock \emph{arXiv preprint arXiv:1908.09355}, 2019.
 
 \bibitem[Jiao et~al.(2019)Jiao, Yin, Shang, Jiang, Chen, Li, Wang, and
   Liu]{jiao2019tinybert}

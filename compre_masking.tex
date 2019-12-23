@@ -1,7 +1,4 @@
 \documentclass{article}
-%\documentclass[compsoc,onecolumn]{IEEEtran}
-% *** GRAPHICS RELATED PACKAGES ***
-%
 
 \usepackage{natbib}
 \usepackage[bookmarks=false]{hyperref}
@@ -16,9 +13,6 @@
 
 \usepackage{balance}
 \usepackage{flafter}
-%\usepackage[linesnumbered,ruled]{algorithm2e}
-%\usepackage{algorithmic}
-%\usepackage{algorithm}
 \usepackage[linesnumbered,ruled]{algorithm2e}
 \usepackage{algpseudocode}
 \usepackage{amsmath}
@@ -29,16 +23,9 @@
 \newcommand\todo[1]{\textcolor{blue}{(todo : #1)}}
 \DontPrintSemicolon
 \usepackage[utf8]{inputenc}
-%\usepackage{algorithm2e}
-%\usepackage{amsmath}
-%\usepackage[linesnumbered,ruled]{algorithm2e}
-%\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 
 
-
-% This allows align equations to be broken across pages
 \allowdisplaybreaks
-% correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 \doublespacing
@@ -48,55 +35,40 @@
 \large{A Dissertation Proposal Submitted In Partial Fulfillment Of PhD Comprehensive Exam \\
  Fall 2019}}
 
-% author names and affiliations
-% use a multiple column layout for up to two different
-% affiliations
 
 \author{Mithun Paul\\}
 
-
-% use for special paper notices
-%\IEEEspecialpapernotice{(Invited Paper)}
-
-% make the title area
 \maketitle
 
 \tableofcontents
 
 \section{Problem Statement}
-Neural networks (NNs)  play a key role in in most natural language processing systems with state of the art (SOA) performance \citep*{devlin2018bert, sun2018improving,bohnet2018morphosyntactic} especially in the domain of recognizing textual entailment \citep*{kim2018semantic}, fake news detection \citep*{baird2017talos} and fact verification \citep*{nie2018combining}.
-The task of natural language inference is considered to be an integral part of natural language understanding (NLU). In this task, which can be seen as a particular instance of recognizing textual entailment (recognizing textual entailment) \citep*{fyodorov2000natural,condoravdi2003entailment,bos2005recognising,maccartney2009extended}, a model is asked to classify if a given sentence (premise) \textit{entails}, \textit{contradicts} or is \textit{neutral} given a second sentence (hypothesis).
 
-Here I focus on the recognizing textual entailment (recognizing textual entailment) task \citep*{dagan2013recognizing}, and its application to fact verification \citep*{thorne2018fever}.
+The task of natural language inference is considered to be an integral part of natural language understanding. In this task, which can be seen as a particular instance of recognizing textual entailment \citep*{fyodorov2000natural,condoravdi2003entailment,bos2005recognising,maccartney2009extended,dagan2013recognizing}, a model is asked to classify if a given sentence (premise) \textit{entails}, \textit{contradicts} or is \textit{neutral} given a second sentence (hypothesis). Several data sets have been created which have enabled the advancement of natural language inference (and fact verification) like SNLI \citep*{bowman2015large} MNLI \citep*{williams2017broad}, FEVER \citep*{thorne2018fever}, and FNC \citep*{pomerleau2017fake}. The state-of-the-art  performance in many of these datasets domains have been achieved by many neural network methods \citep*{kim2018semantic}.
 
-In the world of natural language understanding, recognizing textual entailment (recognizing textual entailment) is the task of determining if one piece of text can be plausibly inferred from another. In the Fact Extraction and Verification (FEVER) shared task \citep*{thorne2018fever}, the recognizing textual entailment module was used determine if a given set of evidence sentences, when compared with the claim provided, can be classified as \textit{supports, refutes}, or \textit{not enough information}.
+However it is known that these datasets are not devoid of biases (subtle statistical patterns in a dataset, which could have been introduced either due to the methodology of data collection or due to an inherent social bias). For example, \citep*{gururangan2018annotation} and \citep*{poliak2018hypothesis} show that biases were introduced into the MNLI dataset by certain language creation choices made by the crowd workers. 
 
-
-However, I suspect that these models depend heavily on lexical information that may transfer poorly between different domains. For example, in early experiments in the fact verification space, I observed that out of all the statements containing the phrase ``American Author,'' 91\% of them belonged to one class label. Such information could be meaningful in the literature news domain, but transfers poorly to other domains such as science or entertainment. 
+These biases can be readily exploited by neural networks and thus have influence on performance.  As an example, \citep*{gururangan2018annotation} demonstrate that many state of the art methods in natural language inference could still achieve reasonable accuracies when trained with the hypothesis alone. This tendency of neural networks to inadvertently exploit such dataset artifacts is likely worsened by the fact that currently the success of natural language processing approaches is almost exclusively measured by empirical performance on benchmark datasets. While this emphasis on performance has facilitated the development of practical solutions, they may lack guidance as they are often not motivated by more general linguistic principles or human intuition. This makes it difficult to accurately judge the degree to which these methods actually extract reasonable representations, correlate with  human intuition or understand the underlying semantics~\citep*{dagan2013recognizing}.
 
 
 
-\subsection{Related Work}
-
-it has been shown that these models also learn from the subtle biases inherent in these datasets \citep*{gururangan2018annotation}.
+While doing  early experiments in the fact verification space, I observed that out of all the statements containing the phrase ``American Author,'' 91\% of them belonged to one class label.I suspected that the state-of-the-art neural network methods depended heavily on these lexical information. Such information could be meaningful in the literature news domain, but transfers poorly to other domains such as science or entertainment.  
 
 
-
-In order to advance any natural language processing task, quality data sets are quintessential. Some such data sets which have enabled the advancement of natural language inference (and fact verification) are SNLI \citep*{bowman2015large} MNLI \citep*{williams2017broad}, FEVER \citep*{thorne2018fever}, and FNC \citep*{pomerleau2017fake}.
-
-However these datasets are not devoid of biases (subtle statistical patterns in a dataset, which could have been introduced either due to the methodology of data collection or due to an inherent social bias). 
-For example, \citep*{gururangan2018annotation} and \citep*{poliak2018hypothesis} show that biases were introduced into the MNLI dataset by certain language creation choices made by the crowd workers. Similarly, \citep*{schuster2019towards} show that in the FEVER, the REFUTES label (same as the \textit{contradicts} label mentioned above) highly correlates with the presence of negation phrases. 
-
-These biases can be readily exploited by neural networks (NNs), and thus have influence on performance.  As an example, \citep*{gururangan2018annotation} demonstrate that many state of the art methods in natural language inference could still achieve reasonable accuracies when trained with the hypothesis alone. Similarly, \citep*{emnlp2019sandeep} show that some neural network methods with very high performance accuracies are heavily dependent on lexical information. This tendency of NNs to inadvertantly exploit such dataset artifacts is likely worsened by the fact that currently the success of natural language processing approaches is almost exclusively measured by empirical performance on benchmark datasets. While this emphasis on performance has facilitated the development of practical solutions, they may lack guidance as they are often not motivated by more general linguistic principles or human intuition. This makes it difficult to accurately judge the degree to which these methods actually extract reasonable representations, correlate with  human intuition or understand the underlying semantics~\citep*{dagan2013recognizing}.
+Hence as part of my research, I aimed to understand and estimate the importance that a neural network assigns to various aspects of the data while learning and making predictions and also to propose solutions to mitigate this dependency.
 
 
- 
-In this work I postulate that altering these datasets based on lexical importance is beneficial for organizing research and guiding future empirical work. While the technique of delexicalization (or masking) has been used before~\citep*{zeman2008cross}, I have expanded it by incorporating semantic information (the assumption that meaning arises from a set of independent and discrete semantic units)~\citep*{peyrard2019simple}. Since these techniques are general and compatible with most existing semantic representations, I believe they can be further extended onto datasets used for other natural language processing tasks. Thus, by enabling integration of these techniques into the training pipeline, I hope to control lexicalization in the datasets which the neural network methods possibly depend upon. 
+In this context, the aims of my research are of this work are:
 
 
 
- 
-In this work I postulate that altering these datasets based on lexical importance is beneficial for organizing research and guiding future empirical work. While the technique of delexicalization (or masking) has been used before~\citep*{zeman2008cross}, I have expanded it by incorporating semantic information (the assumption that meaning arises from a set of independent and discrete semantic units)~\citep*{peyrard2019simple}. Since these techniques are general and compatible with most existing semantic representations, I believe they can be further extended onto datasets used for other natural language processing tasks. Thus, by enabling integration of these techniques into the training pipeline, I hope to control lexicalization in the datasets which the neural network methods possibly depend upon. 
+
+{\flushleft {}}
+
+{\flushleft {\bf (1)}} We investigate the attention weights a state of the art RTE method~\cite{parikh2016decomposable} assigns to input tokens in the RTE component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., NN, NNP etc.) or their phrases, which verified our ``American Author" observation stated above.
+{\flushleft {\bf (2)}}  To verify that these lexicalized models transfer poorly, we implement a domain transfer experiment where a RTE component is trained on the FEVER data, and tested on the Fake News Challenge (FNC) \citep{pomerleau2017fake} dataset. As expected, even though this method achieves high accuracy when evaluated in the same domain, the performance in the target domain is poor, marginally above chance.
+
+{\flushleft {\bf (3)}}  To mitigate this dependence on lexicalized information, we experiment with several strategies for masking out names by replacing them with their semantic category, coupled with a unique identifier to mark that the same or new entities are referenced between claim and evidence. The results show that, while the performance on the FEVER dataset remains at par with that of the model trained on lexicalized data, it improves significantly when tested in the FNC dataset. Thus our experiments demonstrate that our strategy is successful in mitigating the dependency on lexical information.
 
 
 \section{Preliminary Work}
@@ -181,6 +153,10 @@ Importantly, 43.10\% of these noun phrases in FEVER are named entities.
 To mitigate the potential domain dependence introduced by these large attention weights, I propose several semantic masking techniques, which I compare with a deletion baseline.  
 Particularly I experiment with several strategies for delexicalization, i.e., where lexical tokens are replaced (or masked) with indicators of their class. While the technique of delexicalization/masking has been used before \citep*[e.g.,]{zeman2008cross}, here I expand it by incorporating semantic information. In particular, I first replace named entities with their corresponding semantic tags from Stanford's CoreNLP \citep*{manning2014stanford}. 
 To keep track of which entities are referenced betIen claim and evidence sentences, I extend these tags with unique identifiers. Second, I similarly replace other word classes in the sentence (common nouns, verbs, adjectives, and adverbs)  with their super sense tags \citep*{ciaramita2003supersense}.
+
+While the technique of delexicalization (or masking) has been used before~\citep*{zeman2008cross}, I have expanded it by incorporating semantic information (the assumption that meaning arises from a set of independent and discrete semantic units)~\citep*{peyrard2019simple}. Since these techniques are general and compatible with most existing semantic representations, I believe they can be further extended onto datasets used for other natural language processing tasks. Thus, by enabling integration of these techniques into the training pipeline, I hope to control lexicalization in the datasets which the neural network methods possibly depend upon. 
+
+
 
 \subsubsection{Masking Techniques} \label{masking_techniques}
 In this section I describe in detail various masking techniques which were used in the experiments. Examples of each form of masking are shown in Table~\ref{masking_examples}.
@@ -321,6 +297,7 @@ OA-NER+SS & 45.51\% &75.26\%\\
     \label{sstag}
 \end{table*}
 
+These results were published as \citep*{emnlp2019sandeep} where I show that some neural network methods with very high performance accuracies are heavily dependent on lexical information. I also discovered that at the same time  \citep*{schuster2019towards} showed that in the FEVER, the REFUTES label (same as the \textit{contradicts} label mentioned above) highly correlates with the presence of negation phrases. 
 
 \section{Future Work/Plan for Dissertation}
 In the previous sections I investigate the need for delexicalization techniques to reduce the potential dependence of neural network methods on lexicalized items in natural language inference tasks. My experiments show that delexicalization achieves comparative results {\em in-domain} with the state of the art methods trained on lexicalized data. Importantly, I show that methods trained on delexicalized data transfer considerably better {\em out-of-domain}, which  confirms the importance of delexicalization in natural language inference tasks for domain transferability.
@@ -337,17 +314,17 @@ Knowledge distillation is a training procedure where one neural network method f
 
 \subsection{Related Work}
 
-\todo: find top 5 citations of hinton paper
 
-Many previous methods using knowledge distillation (KD) focus on task-specific KD, which transfers knowledge from a single-task teacher to its student. More recently in Sun et al. \citep*{seo2016bidirectional} , Jiao et al. \citep*{jiao2019tinybert}, and Zhao et al.\citep*{zhao2019extreme}, Tang et al. \citep*{tang2019distilling} the KD algorithms are specially designed
-for transformer-based architectures, and the student models are adapted from teacher models. On the other hand Liu et al. \citep*{liu2019attentive}, explore the knowledge distillation method under the setting of multi-task learning \citep*{caruana1997multitask} \citep*{baxter2000model}.
+Many previous methods using knowledge distillation focus on task-specific knowledge distillation, which transfers knowledge from a single-task teacher to its student. Tzeng et al.\citep*{tzeng2015simultaneous}, use data distillation in a visual domain adaptation setting in order to transfer class correlations between domains. 
+
+Papernot et al. \citep*{papernot2016distillation} use distillation as a defense to adversarial perturbations against deep neural networks. More recently in Sun et al. \citep*{sun2019patient} , Jiao et al. \citep*{jiao2019tinybert},  Zhao et al.\citep*{zhao2019extreme}, and Tang et al. \citep*{tang2019distilling} the knowledge distillation algorithms are specially designed for transformer-based architectures, and the student models are adapted from teacher models. Liu et al. \citep*{liu2019attentive}, explore the knowledge distillation method under the setting of multi-task learning \citep*{caruana1997multitask} \citep*{baxter2000model}.
 
 
 
 
 \subsection{Proposed Solution}
 
-Most of the research so far in knowledge distillation has thus been about transferring the form of model while keeping the same knowledge. In this work I propose to use the same data distillation framework, but aim to keep the model stable and transfer the data semantics instead. This proposal is based on the assumption that a more abstract view of the knowledge contained in a dataset, once freed from particular instantiations related to a given domain, can be used to transfer learning across domains. I propose to distill the student model from one or more teachers where the teacher model will be trained on the lexicalized version of a given dataset, while the student model will be trained from the corresponding delexicalized version (refer masking/delexicalization techniques mentioned above) of the same dataset. The reasons for this setup are as follows:
+Most of the research so far in knowledge distillation has thus been about transferring the form of model while keeping the same knowledge. In this work I propose to use the same data distillation framework, but aim to keep the model stable and transfer the underlying data semantics instead. This proposal is based on the assumption that a more abstract view of the knowledge contained in a dataset, once freed from particular instantiations related to a given domain, can be used to transfer learning across domains. I propose to distill the student model from one or more teachers where the teacher model will be trained on the lexicalized version of a given dataset, while the student model will be trained from the corresponding delexicalized version (refer masking/delexicalization techniques mentioned above) of the same dataset. The reasons for this setup are as follows:
 
 \begin{itemize}
   \item The distilled model learns a more universal language representation by leveraging the cross-lexicalized-delexicalized data.
@@ -355,7 +332,7 @@ Most of the research so far in knowledge distillation has thus been about transf
   \item Since the proposed framework is quite general, where the data of the student model is independent of the teacher model, this possibly can enable the transfer of knowledge across domains.
 \end{itemize}
 
-Motivated by the above reasons, I plan to apply knowledge distillation towards solving the domain- transfer problem mentioned above. This is inspired from the idea that datasets in similar domains are possibly related by means of a common low dimensional semantic representation. I propose that using the shared structure within a student teacher model could possibly help by assuming some connections over the underlying data distribution of different datasets. Although many of the recent KD works \citep*{jiao2019tinybert,tang2019distilling,zhao2019extreme}  employ a  pretrained language model as the underlying neural network architecture, I plan to choose simple attention based models adapted from ~\citep*{parikh2016decomposable} and \citep*{chen2016enhanced}. The reasons are:
+Motivated by the above reasons, I plan to apply knowledge distillation towards solving the domain- transfer problem mentioned above. This is inspired from the idea that datasets in similar domains are possibly related by means of a common low dimensional semantic representation. I propose that using the shared structure within a student teacher model could possibly help by assuming some connections over the underlying data distribution of different datasets. Although many of the recent knowledge distillation works \citep*{jiao2019tinybert,tang2019distilling,zhao2019extreme}  employ a  pretrained language model as the underlying neural network architecture, I plan to choose simple attention based models adapted from ~\citep*{parikh2016decomposable} and \citep*{chen2016enhanced}. The reasons are:
 
 \begin{itemize}
   \item Both these models have been proven to achieve state of the art results in natural language inference related tasks especially due to their inherent attention mechanisms.
@@ -404,7 +381,6 @@ my experiments show that delexicalization achieves comparative results {\em in-d
 
 \balance
 \begin{spacing}{0.88}
-%\bibliographystyle{IEEEtran}
 \bibliographystyle{unsrtnat}
 \bibliography{compre_masking}
 \end{spacing}
