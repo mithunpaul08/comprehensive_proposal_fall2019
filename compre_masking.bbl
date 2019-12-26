@@ -1,4 +1,4 @@
-\begin{thebibliography}{40}
+\begin{thebibliography}{43}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -111,6 +111,25 @@ Daniel Zeman and Philip Resnik.
 \newblock Cross-language parser adaptation between related languages.
 \newblock In \emph{Proceedings of the IJCNLP-08 Workshop on NLP for Less
   Privileged Languages}, 2008.
+
+\bibitem[Szarvas et~al.(2013)Szarvas, Biemann, and
+  Gurevych]{szarvas2013supervised}
+Gy{\"o}rgy Szarvas, Chris Biemann, and Iryna Gurevych.
+\newblock Supervised all-words lexical substitution using delexicalized
+  features.
+\newblock In \emph{Proceedings of the 2013 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies}, pages 1131--1141, 2013.
+
+\bibitem[Shin et~al.(2018)Shin, Yoo, and Lee]{shin2018slot}
+Youhyun Shin, Kang~Min Yoo, and Sang-goo Lee.
+\newblock Slot filling with delexicalized sentence generation.
+\newblock In \emph{Interspeech}, pages 2082--2086, 2018.
+
+\bibitem[Herzig and Berant(2018)]{herzig2018decoupling}
+Jonathan Herzig and Jonathan Berant.
+\newblock Decoupling structure and lexicon for zero-shot semantic parsing.
+\newblock \emph{arXiv preprint arXiv:1804.07918}, 2018.
 
 \bibitem[Peyrard(2019)]{peyrard2019simple}
 Maxime Peyrard.

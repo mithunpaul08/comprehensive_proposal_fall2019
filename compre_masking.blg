@@ -3,44 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: compre_masking.aux
 The style file: unsrtnat.bst
 Database file #1: compre_masking.bib
-You've used 40 entries,
+You've used 43 entries,
             2481 wiz_defined-function locations,
-            761 strings with 13137 characters,
-and the built_in function-call counts, 17002 in all, are:
-= -- 1327
-> -- 1104
-< -- 23
-+ -- 412
-- -- 330
-* -- 1295
-:= -- 2736
-add.period$ -- 131
-call.type$ -- 40
-change.case$ -- 80
-chr.to.int$ -- 38
-cite$ -- 40
-duplicate$ -- 886
-empty$ -- 1464
-format.name$ -- 386
-if$ -- 3643
+            775 strings with 13723 characters,
+and the built_in function-call counts, 18433 in all, are:
+= -- 1458
+> -- 1161
+< -- 26
++ -- 434
+- -- 346
+* -- 1386
+:= -- 2933
+add.period$ -- 140
+call.type$ -- 43
+change.case$ -- 86
+chr.to.int$ -- 41
+cite$ -- 43
+duplicate$ -- 970
+empty$ -- 1600
+format.name$ -- 407
+if$ -- 3973
 int.to.chr$ -- 3
-int.to.str$ -- 41
-missing$ -- 39
-newline$ -- 211
-num.names$ -- 122
-pop$ -- 400
+int.to.str$ -- 44
+missing$ -- 42
+newline$ -- 226
+num.names$ -- 131
+pop$ -- 433
 preamble$ -- 1
-purify$ -- 40
+purify$ -- 43
 quote$ -- 0
-skip$ -- 543
+skip$ -- 607
 stack$ -- 0
-substring$ -- 533
-swap$ -- 201
-text.length$ -- 11
+substring$ -- 619
+swap$ -- 231
+text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 280
+type$ -- 301
 warning$ -- 0
-while$ -- 122
+while$ -- 134
 width$ -- 0
-write$ -- 520
+write$ -- 558
