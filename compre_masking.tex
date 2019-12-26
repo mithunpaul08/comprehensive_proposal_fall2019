@@ -223,7 +223,7 @@ For example, in the claim-evidence pair shown in Table~\ref{masking_examples}, w
 The same id is used wherever the same entity is seen again, e.g., in the evidence sentence. However, the date \textit{27 April 2005} occurs only in the evidence, and hence it is replaced with \texttt{date-e1}.
 Importantly, I createdpseudo-pretrained embeddings for these new OA-NER-based tokens by adding a small amount of random Gaussian noise (mean 0 and variance of 0.1) to the pre-trained embeddings~\citep*{pennington2014glove} of the root word corresponding to the category (e.g., \textit{person}). Thus the embeddings of all the sub-tags, while being unique, are close to that of the root word.
 \item {\flushleft{\textbf{OA-NER + Super Sense (SS) Tags}}}:
-Super-sense tagging is a sequence modeling approach that annotates phrases with coarse WordNet senses~\citep*{ciaramita2003supersense}~\citep*{miller1990introduction}. In this semantic lifting method, I not only replace named entities with their OA-NER tags, but also replace other lexical items with their corresponding super sense tags, if found. As with the OA-NER approach, the lexical overlap is also explicitly marked for all these tags with unique ids (see Table~\ref{masking_examples}). 
+Super-sense tagging is a sequence modeling approach that annotates phrases with coarse WordNet senses~\citep*{ciaramita2003supersense}~\citep*{miller1990introduction}. In this semantic lifting method, I not only replaced named entities with their OA-NER tags, but also replaced other lexical items with their corresponding super sense tags, if found. As with the OA-NER approach, the lexical overlap was also explicitly marked for all these tags with unique ids (see Table~\ref{masking_examples}). 
 \end{enumerate}
 
 \begin{table*}[t]
@@ -275,11 +275,11 @@ More importantly, this also suggests that while I have demonstrated that semanti
 
 \subsubsection {Phase 2}
 
-To further verify these results found in Phase 1, I extend the testing to one more dataset (e.g. MNLI) and by using one more state-of-the-art models (Enhanced Sequential Inference (ESIM)  \cite{chen2016enhanced}). Table~\ref{results} shows the performance of both of the neural network methods (decomposable attention and ESIM) on  both the lexicalized and delexicalized versions of the MNLI dataset. All the methods were re-trained out of the box (without any parameter tuning) and tested on the corresponding evaluation partitions of the dataset. As shown in the table, the accuracies of both the methods remain at par when trained with the delexicalized version of the dataset. 
+To further verify these results found in Phase 1, I extended the testing to one more dataset (e.g. MNLI) and also used one more of the state-of-the-art models (Enhanced Sequential Inference (ESIM)  \cite{chen2016enhanced}). Table~\ref{results} shows the performance of both of the neural network methods (decomposable attention and ESIM) on  both the lexicalized and delexicalized versions of the MNLI dataset. All the methods were re-trained out of the box (without any parameter tuning) and tested on the corresponding evaluation partitions of the dataset. As shown in the table, the accuracies of both the methods remain at par when trained with the delexicalized version of the dataset. 
 
 
  
-Further to test the effect of delexicalization on domain transferability I pick one of the methods, decomposable attention, train it in one domain and test it in an out-of-domain setting. These results can be seen in Table ~\ref{results_outofdomain}. Specifically, the table shows the accuracies when the model was trained on MNLI and then tested on MedNLI datasets. The results show that the accuracy of the delexicalized model remain at par with that of the model trained on lexicalized model. This aligns with my initial hypothesis that delexicalization helps towards de-biasing these datasets, and thus preventing the neural network methods from being \textit{distracted} by statistical patterns that are not meaningful for the task at hand.
+Further to test the effect of delexicalization on domain transferability I picked one of the methods, decomposable attention, trained it in one domain and tested it in an out-of-domain setting. These results can be seen in Table ~\ref{results_outofdomain}. Specifically, the table shows the accuracies when the model was trained on MNLI and then tested on MedNLI datasets. The results show that the accuracy of the delexicalized model remain at par with that of the model trained on lexicalized model. This aligns with my initial hypothesis that delexicalization helps towards de-biasing these datasets, and thus preventing the neural network methods from being \textit{distracted} by statistical patterns that are not meaningful for the task at hand.
 
 In total the experiments summarized in all these tables highlight three observations: 
 
@@ -350,16 +350,15 @@ OA-NER+SS & 45.51\% &75.26\%\\
 Also this work touches upon questions about which granularity offers a good approximation of semantic meanings. For example, Table ~\ref{sstag} shows the performance of Decomposable Attention against various delexicalization strategies. It can be seen that, while the addition of OA-NER tags does not change the performance significantly, the semantic lifting provided by the SS tags decreased the accuracies considerably in both cases (FEVER and FNC).  This demonstrates that while generalizing away from lexical items is important, {\em how much} to generalize remains an open research problem. One future direction of interest is exploring the right level of semantic lifting granularity needed for delexicalization, which is likely dependent on the task. 
 
 
-
-These results, which were published as \citep*{emnlp2019sandeep}, demonstrate that my semantic lifting strategy is successful in mitigating the dependency on domain-specific lexical information and aids in certain domain transfer transitions. 
-
 \section{Published/Submitted Papers}
+
+These experiments and results were published in many peer reviewed conferences.
+
+as \citep*{emnlp2019sandeep}, demonstrate that my semantic lifting strategy is successful in mitigating the dependency on domain-specific lexical information and aids in certain domain transfer transitions. 
+
 
 \todo{Briefly discuss the 3 papers you published/submitted on this topic, including the LREC one. Add a brief note that you also co-authored another paper (the quant adjs), which is not discussed here.}
 
-\section{Published/Submitted Papers}
-
-\todo{Briefly discuss the 3 papers you published/submitted on this topic, including the LREC one. Add a brief note that you also co-authored another paper (the quant adjs), which is not discussed here.}
 
  
 \section{Future Work/Plan for Dissertation}
