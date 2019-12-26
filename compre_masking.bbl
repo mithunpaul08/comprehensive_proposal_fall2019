@@ -1,4 +1,4 @@
-\begin{thebibliography}{36}
+\begin{thebibliography}{39}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -100,17 +100,6 @@ Ankur~P Parikh, Oscar T{\"a}ckstr{\"o}m, Dipanjan Das, and Jakob Uszkoreit.
 \newblock A decomposable attention model for natural language inference.
 \newblock \emph{arXiv preprint arXiv:1606.01933}, 2016.
 
-\bibitem[Romanov and Shivade(2018)]{romanov2018lessons}
-Alexey Romanov and Chaitanya Shivade.
-\newblock Lessons from natural language inference in the clinical domain.
-\newblock \emph{arXiv preprint arXiv:1808.06752}, 2018.
-
-\bibitem[Bahdanau et~al.(2014)Bahdanau, Cho, and Bengio]{bahdanau2014neural}
-Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
-\newblock Neural machine translation by jointly learning to align and
-  translate.
-\newblock \emph{arXiv preprint arXiv:1409.0473}, 2014.
-
 \bibitem[Zeman and Resnik(2008)]{zeman2008cross}
 Daniel Zeman and Philip Resnik.
 \newblock Cross-language parser adaptation between related languages.
@@ -122,53 +111,6 @@ Maxime Peyrard.
 \newblock A simple theoretical model of importance for summarization.
 \newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
   for Computational Linguistics}, pages 1059--1073, 2019.
-
-\bibitem[Manning et~al.(2014)Manning, Surdeanu, Bauer, Finkel, Bethard, and
-  McClosky]{manning2014stanford}
-Christopher Manning, Mihai Surdeanu, John Bauer, Jenny Finkel, Steven Bethard,
-  and David McClosky.
-\newblock The stanford corenlp natural language processing toolkit.
-\newblock In \emph{Proceedings of 52nd annual meeting of the association for
-  computational linguistics: system demonstrations}, pages 55--60, 2014.
-
-\bibitem[Ciaramita and Johnson(2003)]{ciaramita2003supersense}
-Massimiliano Ciaramita and Mark Johnson.
-\newblock Supersense tagging of unknown nouns in wordnet.
-\newblock In \emph{Proceedings of the 2003 conference on Empirical methods in
-  natural language processing}, pages 168--175. Association for Computational
-  Linguistics, 2003.
-
-\bibitem[Pennington et~al.(2014)Pennington, Socher, and
-  Manning]{pennington2014glove}
-Jeffrey Pennington, Richard Socher, and Christopher Manning.
-\newblock Glove: Global vectors for word representation.
-\newblock In \emph{Proceedings of the 2014 conference on empirical methods in
-  natural language processing (EMNLP)}, pages 1532--1543, 2014.
-
-\bibitem[Miller et~al.(1990)Miller, Beckwith, Fellbaum, Gross, and
-  Miller]{miller1990introduction}
-George~A Miller, Richard Beckwith, Christiane Fellbaum, Derek Gross, and
-  Katherine~J Miller.
-\newblock Introduction to wordnet: An on-line lexical database.
-\newblock \emph{International journal of lexicography}, 3\penalty0
-  (4):\penalty0 235--244, 1990.
-
-\bibitem[Ling and Weld(2012)]{ling2012fine}
-Xiao Ling and Daniel~S Weld.
-\newblock Fine-grained entity recognition.
-\newblock In \emph{Twenty-Sixth AAAI Conference on Artificial Intelligence},
-  2012.
-
-\bibitem[Suntwal et~al.(2019)Suntwal, Paul, Sharp, and
-  Surdeanu]{emnlp2019sandeep}
-Sandeep Suntwal, Mithun Paul, Rebecca Sharp, and Mihai Surdeanu.
-\newblock On the importance of delexicalization for fact verification.
-\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
-  Natural Language Processing and the 9th International Joint Conference on
-  Natural Language Processing, (Short Papers)}, Hong Kong, November 2019.
-  Association for Computational Linguistics.
-\newblock URL
-  \url{http://clulab.cs.arizona.edu/papers/emnlp_2019_masking_suntwal_etal.pdf}.
 
 \bibitem[Ba and Caruana(2014)]{ba2014deep}
 Jimmy Ba and Rich Caruana.
@@ -238,5 +180,96 @@ Jonathan Baxter.
 \newblock A model of inductive bias learning.
 \newblock \emph{Journal of artificial intelligence research}, 12:\penalty0
   149--198, 2000.
+
+\bibitem[Romanov and Shivade(2018)]{romanov2018lessons}
+Alexey Romanov and Chaitanya Shivade.
+\newblock Lessons from natural language inference in the clinical domain.
+\newblock \emph{arXiv preprint arXiv:1808.06752}, 2018.
+
+\bibitem[Bahdanau et~al.(2014)Bahdanau, Cho, and Bengio]{bahdanau2014neural}
+Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
+\newblock Neural machine translation by jointly learning to align and
+  translate.
+\newblock \emph{arXiv preprint arXiv:1409.0473}, 2014.
+
+\bibitem[Manning et~al.(2014)Manning, Surdeanu, Bauer, Finkel, Bethard, and
+  McClosky]{manning2014stanford}
+Christopher Manning, Mihai Surdeanu, John Bauer, Jenny Finkel, Steven Bethard,
+  and David McClosky.
+\newblock The stanford corenlp natural language processing toolkit.
+\newblock In \emph{Proceedings of 52nd annual meeting of the association for
+  computational linguistics: system demonstrations}, pages 55--60, 2014.
+
+\bibitem[Ciaramita and Johnson(2003)]{ciaramita2003supersense}
+Massimiliano Ciaramita and Mark Johnson.
+\newblock Supersense tagging of unknown nouns in wordnet.
+\newblock In \emph{Proceedings of the 2003 conference on Empirical methods in
+  natural language processing}, pages 168--175. Association for Computational
+  Linguistics, 2003.
+
+\bibitem[Pennington et~al.(2014)Pennington, Socher, and
+  Manning]{pennington2014glove}
+Jeffrey Pennington, Richard Socher, and Christopher Manning.
+\newblock Glove: Global vectors for word representation.
+\newblock In \emph{Proceedings of the 2014 conference on empirical methods in
+  natural language processing (EMNLP)}, pages 1532--1543, 2014.
+
+\bibitem[Miller et~al.(1990)Miller, Beckwith, Fellbaum, Gross, and
+  Miller]{miller1990introduction}
+George~A Miller, Richard Beckwith, Christiane Fellbaum, Derek Gross, and
+  Katherine~J Miller.
+\newblock Introduction to wordnet: An on-line lexical database.
+\newblock \emph{International journal of lexicography}, 3\penalty0
+  (4):\penalty0 235--244, 1990.
+
+\bibitem[Ling and Weld(2012)]{ling2012fine}
+Xiao Ling and Daniel~S Weld.
+\newblock Fine-grained entity recognition.
+\newblock In \emph{Twenty-Sixth AAAI Conference on Artificial Intelligence},
+  2012.
+
+\bibitem[Suntwal et~al.(2019{\natexlab{a}})Suntwal, Paul, Sharp, and
+  Surdeanu]{suntwal2019importance}
+Sandeep Suntwal, Mithun Paul, Rebecca Sharp, and Mihai Surdeanu.
+\newblock On the importance of delexicalization for fact verification.
+\newblock \emph{arXiv preprint arXiv:1909.09868}, 2019{\natexlab{a}}.
+
+\bibitem[Suntwal et~al.(2019{\natexlab{b}})Suntwal, Paul, Sharp, and
+  Surdeanu]{emnlp2019sandeep}
+Sandeep Suntwal, Mithun Paul, Rebecca Sharp, and Mihai Surdeanu.
+\newblock On the importance of delexicalization for fact verification.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing and the 9th International Joint Conference on
+  Natural Language Processing, (Short Papers)}, Hong Kong, November
+  2019{\natexlab{b}}. Association for Computational Linguistics.
+\newblock URL
+  \url{http://clulab.cs.arizona.edu/papers/emnlp_2019_masking_suntwal_etal.pdf}.
+
+\bibitem[Sharp et~al.(2019)Sharp, Pyarelal, Gyori, Alcock, Laparra,
+  Valenzuela-Escarcega, Nagesh, Yadav, Bachman, Tang, Lent, Luo, Paul, Bethard,
+  Barnard, Morrison, and Surdeanu]{sharp}
+Rebecca Sharp, Adarsh Pyarelal, Benjamin Gyori, Keith Alcock, Egoitz Laparra,
+  Marco~A. Valenzuela-Escarcega, Ajay Nagesh, Vikas Yadav, John Bachman, Zheng
+  Tang, Heather Lent, Fan Luo, Mithun Paul, Steven Bethard, Kobus Barnard,
+  Clayton Morrison, and Mihai Surdeanu.
+\newblock Eidos, indra, \& delphi: From free text to executable causal models.
+\newblock In \emph{Proceedings of the 2019 Conference of the North American
+  Chapter of the Association for Computational Linguistics (Demonstrations)},
+  pages 42--47, Minneapolis, Minnesota, 6 2019. Association for Computational
+  Linguistics.
+\newblock URL \url{http://www.aclweb.org/anthology/N19-4008}.
+
+\bibitem[Sharp et~al.(2018)Sharp, Paul, Nagesh, Bell, and
+  Surdeanu]{sharpGrounding}
+Rebecca Sharp, Mithun Paul, Ajay Nagesh, Dane Bell, and Mihai Surdeanu.
+\newblock Grounding gradable adjectives through crowdsourcing.
+\newblock In Nicoletta Calzolari, Khalid Choukri, Christopher Cieri, Thierry
+  Declerck, Sara Goggi, Koiti Hasida, Hitoshi Isahara, Bente Maegaard, Joseph
+  Mariani, H\'{e}l\`{e}ne Mazo, Asuncion Moreno, Jan Odijk, Stelios Piperidis,
+  and Takenobu Tokunaga, editors, \emph{Proceedings of the Eleventh
+  International Conference on Language Resources and Evaluation (LREC 2018)},
+  Paris, France, May 2018. European Language Resources Association (ELRA).
+\newblock ISBN 979-10-95546-00-9.
+\newblock URL \url{http://www.lrec-conf.org/proceedings/lrec2018/pdf/977.pdf}.
 
 \end{thebibliography}
