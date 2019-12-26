@@ -44,18 +44,16 @@
 
 \section{Problem Statement}
 
-The task of natural language inference is considered to be an integral part of natural language understanding. In this task, which can be seen as a particular instance of recognizing textual entailment \citep*{fyodorov2000natural,condoravdi2003entailment,bos2005recognising,maccartney2009extended,dagan2013recognizing}, a model is asked to classify if a given sentence (premise) \textit{entails}, \textit{contradicts} or is \textit{neutral} given a second sentence (hypothesis). Several data sets have been created which have enabled the advancement of natural language inference (and fact verification) like SNLI \citep*{bowman2015large} MNLI \citep*{williams2017broad}, FEVER \citep*{thorne2018fever}, and FNC \citep*{pomerleau2017fake}. The state-of-the-art  performance in many of these datasets domains have been achieved by many neural network methods \citep*{kim2018semantic}.
-
-However it is known that these datasets are not devoid of biases (subtle statistical patterns in a dataset, which could have been introduced either due to the methodology of data collection or due to an inherent social bias). For example, \citep*{gururangan2018annotation} and \citep*{poliak2018hypothesis} show that biases were introduced into the MNLI dataset by certain language creation choices made by the crowd workers. 
-
-These biases can be readily exploited by neural networks and thus have influence on performance.  As an example, \citep*{gururangan2018annotation} demonstrate that many state of the art methods in natural language inference could still achieve reasonable accuracies when trained with the hypothesis alone. This tendency of neural networks to inadvertently exploit such dataset artifacts is likely worsened by the fact that currently the success of natural language processing approaches is almost exclusively measured by empirical performance on benchmark datasets. While this emphasis on performance has facilitated the development of practical solutions, they may lack guidance as they are often not motivated by more general linguistic principles or human intuition. This makes it difficult to accurately judge the degree to which these methods actually extract reasonable representations, correlate with  human intuition or understand the underlying semantics~\citep*{dagan2013recognizing}.
+The task of natural language inference is considered to be an integral part of natural language understanding. In this task, which can be seen as a particular instance of recognizing textual entailment \citep*{fyodorov2000natural,condoravdi2003entailment,bos2005recognising,maccartney2009extended,dagan2013recognizing}, a classifier is asked to classify if a given sentence (premise) \textit{entails}, \textit{contradiction} or is \textit{neutral} given a second sentence (hypothesis). For example if a classifier is given the premise sentence ``A man inspects the uniform of a figure in some East Asian country" and the corresponding hypothesis sentence is ``The man is sleeping", the classifier should return the label  \textit{contradiction}. Several data sets have been created for this task which have enabled the advancement of natural language inference (and fact verification).  SNLI \citep*{bowman2015large} MNLI \citep*{williams2017broad}, FEVER \citep*{thorne2018fever}, and FNC \citep*{pomerleau2017fake} are a few examples of such datasets. 
 
 
+The state-of-the-art  performance in most of these datasets have been achieved by  neural network methods \citep*{kim2018semantic,chen2016enhanced,liu2019multi}. However it is known that these datasets are not devoid of biases (subtle statistical patterns in a dataset, which could have been introduced either due to the methodology of data collection or due to an inherent social bias). For example, \citep*{gururangan2018annotation} and \citep*{poliak2018hypothesis} show that biases were introduced into the MNLI dataset by certain language creation choices made by the crowd workers. 
 
-While doing  early experiments in the fact verification space, I observed that out of all the statements containing the phrase ``American Author,'' 91\% of them belonged to one class label. I suspected that the state-of-the-art neural network methods depended heavily on these lexical information. Such information could be meaningful in the literature news domain, but transfers poorly to other domains such as science or entertainment.  
+These biases can be readily exploited by neural networks and thus have an influence on performance.  As an example, \citep*{gururangan2018annotation} demonstrate that many state of the art methods in natural language inference could still achieve reasonable accuracies when trained with the hypothesis alone. This tendency of neural networks to inadvertently exploit such dataset artifacts is likely worsened by the fact that currently the success of natural language processing approaches is almost exclusively measured by empirical performance on benchmark datasets. While this emphasis on performance has facilitated the development of practical solutions, they may lack guidance as they are often not motivated by more general linguistic principles or human intuition. This makes it difficult to accurately judge the degree to which these methods actually extract reasonable representations, correlate with  human intuition or understand the underlying semantics~\citep*{dagan2013recognizing}.
 
 
-Hence as part of my research, I aim to understand and estimate the importance that a neural network assigns to various aspects of the data while learning and making predictions and also to propose solutions to mitigate this dependency.
+
+While doing  early experiments in the fact verification space, I observed that out of all the statements containing the phrase ``American Author,'' 91\% of them belonged to one class label. I suspected that this is yet another statistical artifact and the state-of-the-art neural network methods which give high accuracy scores heavily depend on these lexical information. Such information could be meaningful in the literature news domain, but transfers poorly to other domains such as science or entertainment.  Hence as part of my research, I aim to understand and estimate the importance that a neural network assigns to various aspects of the data while learning and making predictions and also to propose solutions to mitigate this dependency.
 
 
 In this context, the aims of my research are:
@@ -63,18 +61,25 @@ In this context, the aims of my research are:
 
 \begin{itemize}
 
-\item I investigate the attention weights a state of the art RTE method~\cite{parikh2016decomposable} assigns to input tokens in the RTE component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., NN, NNP etc.) or their phrases, which verified my ``American Author" observation stated above.
+\item I investigate the attention weights a state of the art method  ~\cite{parikh2016decomposable}  for recognizing textual entailment (RTE) assigns to input tokens in the RTE component of fact verification systems \citep*{thorne2018fever,pomerleau2017fake}, and confirm that most of the weight is assigned to POS tags of nouns (e.g., NN, NNP etc.) or their phrases, which verified my ``American Author" observation stated above.
+
 \item  To verify that these lexicalized models transfer poorly, I implement a domain transfer experiment where a RTE component is trained on the FEVER data, and tested on the Fake News Challenge (FNC) \citep{pomerleau2017fake} dataset. As expected, even though this method achieves high accuracy when evaluated in the same domain, the performance in the target domain is poor, marginally above chance.
 
-\item  To mitigate this dependence on lexicalized information, I experiment with several strategies for masking out names by replacing them with their semantic category, coupled with a unique identifier to mark that the same or new entities are referenced between claim and evidence. The results show that, while the performance on the FEVER dataset remains at par with that of the model trained on lexicalized data, it improves significantly when tested in the FNC dataset. Thus my experiments demonstrate that my strategy is successful in mitigating the dependency on lexical information.
+\item  To mitigate this dependence on lexicalized information, I experiment with several strategies for semantic lifting out names by replacing them with their semantic category, coupled with a unique identifier to mark that the same or new entities are referenced between claim and evidence. The results show that, while the performance on the FEVER dataset remains at par with that of the model trained on lexicalized data, it improves significantly when tested in the FNC dataset. Thus my experiments demonstrate that my strategy is successful in mitigating the dependency on lexical information.
 
 \item I propose a framework based on fact distillation to train neural network models which can learn the underlying semantics of a given dataset and hence can be used to transfer learning across domains.
 \end{itemize}
 
+\section{Related Work}
+
+\todo{Need to add this section. You can group it in 3 subsections: (a) methods for NLI; (b) masking papers; (c) knowledge distillation. For (b) and (c) emphasize how your direction is different.}
+
 \section{Preliminary Work}
 
 
-In this section I describe several preliminary experiments I conduct to verify that models trained on lexicalized data transfer poorly across domains. In particular I investigate the attention weights a state of the art recognizing textual entailment method~\citep*{parikh2016decomposable} assigns to input tokens in the recognizing textual entailment component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., neural network, NNP etc.) or their phrases, which verify my ``American Author" observation stated above. Further I also show results from a few proposed solutions which control for unnecessary lexicalization enabling data transfer across domains.
+In this section I describe several preliminary experiments I conduct \todo{this section should use verbs in past tense, since this work is completed} to verify that models trained on lexicalized data transfer poorly across domains. In particular I investigate the attention weights a state of the art recognizing textual entailment method~\citep*{parikh2016decomposable} assigns to input tokens in the recognizing textual entailment component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., neural network, NNP etc.) or their phrases, which verify my ``American Author" observation stated above. Further I also show results from a few proposed solutions which control for unnecessary lexicalization enabling data transfer across domains.
+
+\todo{Give credit to Sandeep here. Say that this work was a collaboration with him. Be clear what was his contribution and what was yours. Otherwise, the committee will have to speculate...}
 
 
 
@@ -156,15 +161,15 @@ Importantly, 43.10\% of these noun phrases in FEVER are named entities.
 
 
 \subsection{Proposed Delexicalization Techniques}
-To mitigate the potential domain dependence introduced by these large attention weights, I propose several semantic masking techniques, which I compare with a deletion baseline.  
-Particularly I experiment with several strategies for delexicalization, i.e., where lexical tokens are replaced (or masked) with indicators of their class. While the technique of delexicalization (or masking) has been used before~\citep*{zeman2008cross}, I have expanded it by incorporating semantic information (the assumption that meaning arises from a set of independent and discrete semantic units)~\citep*{peyrard2019simple}. In particular, I first replace named entities with their corresponding semantic tags from Stanford's CoreNLP \citep*{manning2014stanford}. 
+To mitigate the potential domain dependence introduced by these large attention weights, I propose several semantic lifting \todo{I would not call this masking any more. I think "semantic lifting" is a more general name for what you do, or aim to do} techniques, which I compare with a deletion baseline.  
+Particularly I experiment with several strategies for delexicalization, i.e., where lexical tokens are replaced (or masked) with indicators of their class. While the technique of delexicalization (or semantic lifting) has been used before~\citep*{zeman2008cross}, I have expanded it by incorporating semantic information (the assumption that meaning arises from a set of independent and discrete semantic units)~\citep*{peyrard2019simple}. In particular, I first replace named entities with their corresponding semantic tags from Stanford's CoreNLP \citep*{manning2014stanford}. 
 To keep track of which entities are referenced betIen claim and evidence sentences, I extend these tags with unique identifiers. Second, I similarly replace other word classes in the sentence (common nouns, verbs, adjectives, and adverbs)  with their super sense tags \citep*{ciaramita2003supersense}.
 
 
 
 
-\subsubsection{Masking Techniques} \label{masking_techniques}
-In this section I describe in detail various masking techniques which were used in the experiments. Examples of each form of masking are shown in Table~\ref{masking_examples}.
+\subsubsection{Semantic Lifting Techniques} \label{masking_techniques}
+In this section I describe in detail various semantic lifting techniques which were used in the experiments. Examples of each form of semantic lifting are shown in Table~\ref{masking_examples}.
 
 
 \begin{table*}[t]
@@ -187,7 +192,7 @@ OA-NER  & {With \texttt{organization-c1}, the \texttt{misc-c1} entered commercia
 \end{tabular}
 \end{center}
 
-    \caption{ Example illustratingmy various masking techniques, compared to the original fully lexicalized data. Note that the masking tags were generated with real-world (imperfect) tools. For example, "Airbus A380" in the claim was correctly classified as \texttt{miscellaneous} by the NER tool, while ``A380" in the evidence was not, thus preventing us from taking advantage of the overlap. }
+    \caption{ Example illustrating my various semantic lifting techniques, compared to the original fully lexicalized data. Note that the semantic lifting tags were generated with real-world (imperfect) tools. For example, "Airbus A380" in the claim was correctly classified as \texttt{miscellaneous} by the NER tool, while ``A380" in the evidence was not, thus preventing us from taking advantage of the overlap. }
     \label{masking_examples}
 \end{table*}
 
@@ -205,7 +210,7 @@ For example, in the claim-evidence pair shown in Table~\ref{masking_examples}, w
 The same id is used wherever the same entity is seen again, e.g., in the evidence sentence. However, the date \textit{27 April 2005} occurs only in the evidence, and hence it is replaced with \texttt{date-e1}.
 Importantly, I create pseudo-pretrained embeddings for these new OA-NER-based tokens by adding a small amount of random Gaussian noise (mean 0 and variance of 0.1) to pre-trained embeddings~\citep*{pennington2014glove} of the root word corresponding to the category (e.g., \textit{person}). Thus the embeddings of all the sub-tags, while being unique, are close to that of the root word.
 \item {\flushleft{\textbf{OA-NER + Super Sense (SS) Tags}}}:
-Super-sense tagging is a sequence modeling approach that annotates phrases with coarse WordNet senses~\citep*{ciaramita2003supersense}~\citep*{miller1990introduction}. In this masking method, I not only replace named entities with their OA-NER tags, but also replace other lexical items with their corresponding super sense tags, if found. As with the OA-NER approach, the lexical overlap is also explicitly marked for all these tags with unique ids (see Table~\ref{masking_examples}). 
+Super-sense tagging is a sequence modeling approach that annotates phrases with coarse WordNet senses~\citep*{ciaramita2003supersense}~\citep*{miller1990introduction}. In this semantic lifting method, I not only replace named entities with their OA-NER tags, but also replace other lexical items with their corresponding super sense tags, if found. As with the OA-NER approach, the lexical overlap is also explicitly marked for all these tags with unique ids (see Table~\ref{masking_examples}). 
 \end{enumerate}
 
 \begin{table*}[t]
@@ -215,7 +220,7 @@ Super-sense tagging is a sequence modeling approach that annotates phrases with 
  \hline
 Train Domain & {FNC}& {FEVER}  & {FEVER} & {{FNC}} \\ 
 Eval Domain & {FNC}& {{FNC}}  & {FEVER} & {{FEVER}} \\ \hline
-Masking & & & & \\
+Semantic Lifting & & & & \\
 \hline
 Lexicalized &68.99\%& {48.86\%} &83.43\%& {41.16\%} \\
 %\hline
@@ -228,7 +233,7 @@ Basic NER &69.40\%& 46.27\% &76.23\%& 35.72\%\\
 \textbf{OA-NER+SS} & 45.51\%& 46.71\% &75.26\%& {\bf 51.77\%}\\
 \end{tabular}
 \end{center}
-    \caption{\label{crossdomain} Various masking techniques and their performance accuracies, both in-domain and out-of-domain.} \label{tab:results}
+    \caption{\label{crossdomain} Various semantic lifting techniques and their performance accuracies, both in-domain and out-of-domain.} \label{tab:results}
 
 \end{table*}
 Since these techniques are general and compatible with most existing semantic representations, I believe they can be further extended onto datasets used for other natural language processing tasks. Thus, by enabling integration of these techniques into the training pipeline, I hope to control lexicalization in the datasets which the neural network methods possibly depend upon. 
@@ -242,18 +247,18 @@ Since these techniques are general and compatible with most existing semantic re
 
 \subsubsection{Phase 1}
 
-In the first phase of experiments, the proposed masking strategies were tested on two fact verification datasets, FEVER and FNC where a decomposable attention model was trained with each of my masking approaches, as well as with the original fully lexicalized input.  Table \ref{tab:results} shows the results of these experiments.
+In the first phase of experiments, the proposed semantic lifting strategies were tested on two fact verification datasets, FEVER and FNC where a decomposable attention model was trained with each of my semantic lifting approaches, as well as with the original fully lexicalized input.  Table \ref{tab:results} shows the results of these experiments.
 First, I note that indeed the fully lexicalized model, which performs well in-domain, transfers very poorly to a new domain.  
 For example, the lexicalized model trained on FEVER,  gave an accuracy of 83.43\% when tested on FEVER, but reduced to 48.86\% when tested on FNC.
 This verifies my findings that the signal the model learns from unmasked text does not generalize well.
 Additionally, the deletion baseline performs even worse than the fully lexicalized model, which indicates that while the original text can be too domain-specific, its semantic content needs to be maintained on some level. \\
-Further, I see that all of my masking approaches improve accuracy in the cross-domain setting, by as much as 10.6\% (25.8\% relative), while still maintaining strong in-domain performance (dropping only a few percentage points).
+Further, I see that all of my semantic lifting approaches improve accuracy in the cross-domain setting, by as much as 10.6\% (25.8\% relative), while still maintaining strong in-domain performance (dropping only a few percentage points).
 The best cross-domain performance is obtained using my methods which are overlap-aware, suggesting that even when content is abstracted (i.e., masked), the model benefits from explicit awareness of lexical overlap for fact verification. For example, the overlap-aware SS tagging model that was trained on FNC, gave the highest accuracy of 51.77\% when tested out-of-domain, on FEVER.
 
-I note that the model trained on FNC is able to get optimal performance in the FEVER dataset when using the OA-NER + SS tag masking, while the addition of super sense tags did not benefit the model that was trained on FEVER.  
+I note that the model trained on FNC is able to get optimal performance in the FEVER dataset when using the OA-NER + SS tag semantic lifting, while the addition of super sense tags did not benefit the model that was trained on FEVER.  
 This could be due to the fact that overall, the evidence provided in FNC is much longer than that of FEVER,
 and perhaps the model needs more training data to learn stable signal from the SS tags. 
-More importantly, this also suggests that while I have demonstrated that semantic masking is clearly beneficial, it is unclear exactly what level of masking granularity should be employed for a given domain -- from coarse-grained NER tags, to the more granular super sense tags, perhaps even to very fine-grained tags such as those proposed by \citet{ling2012fine}.
+More importantly, this also suggests that while I have demonstrated that semantic lifting strategy is clearly beneficial, it is unclear exactly what level of semantic lifting granularity should be employed for a given domain -- from coarse-grained NER tags, to the more granular super sense tags, perhaps even to very fine-grained tags such as those proposed by \citet{ling2012fine}.
 
 \subsubsection {Phase 2}
 
@@ -306,7 +311,7 @@ OA-NER &51.57\%\\
 \hline
 \end{tabular}
 \end{center}
-    \caption{ Performance accuracies of the Decomposable Attention against various masking techniques when tested out-of-domain. The ``Train Domain'' row indicates the training datasets, while the ``Eval Domain'' indicates the domain of the corresponding evaluation partitions. For example, one experiment trained the decomposable attention method on FEVER and evaluated the resulting model on the testing partition of FNC (column 3). }
+    \caption{ Performance accuracies of the Decomposable Attention against various semantic lifting techniques when tested out-of-domain. The ``Train Domain'' row indicates the training datasets, while the ``Eval Domain'' indicates the domain of the corresponding evaluation partitions. For example, one experiment trained the decomposable attention method on FEVER and evaluated the resulting model on the testing partition of FNC (column 3). }
     
     \label{results_outofdomain}
 \end{table*}
@@ -316,7 +321,7 @@ OA-NER &51.57\%\\
 \begin{center}
 \begin{tabular}{|p{20mm}|p{9mm}|p{10mm}|}
  \hline
-\textbf{Masking strategy} & \textbf{FNC}  & \textbf{FEVER}  \\ 
+\textbf{Semantic lifting strategy} & \textbf{FNC}  & \textbf{FEVER}  \\ 
 \hline
 Lexicalized &68.99\% &83.43\% \\
 OA-NER &65.85\% &82.31\%\\
@@ -324,16 +329,20 @@ OA-NER+SS & 45.51\% &75.26\%\\
 \hline
 \end{tabular}
 \end{center}
-    \caption{Performance accuracies of the Decomposable Attention against various masking techniques when tested in-domain for FNC and FEVER datasets. The ``Lexicalized" row shows the accuracies when decomposable attention was trained using the corresponding lexicalized data. This demonstrates that while delexicalization with OA-NER maintains the performance, the addition of Super Sense tags reduces the accuracy, emphasizing the fact that the amount of granularity to use is still an open problem.}
+    \caption{Performance accuracies of the Decomposable Attention against various semantic lifting techniques when tested in-domain for FNC and FEVER datasets. The ``Lexicalized" row shows the accuracies when decomposable attention was trained using the corresponding lexicalized data. This demonstrates that while delexicalization with OA-NER maintains the performance, the addition of Super Sense tags reduces the accuracy, emphasizing the fact that the amount of granularity to use is still an open problem.}
     \label{sstag}
 \end{table*}
 
 
-Also this work touches upon questions about which granularity offers a good approximation of semantic meanings. For example, Table ~\ref{sstag} shows the performance of Decomposable Attention against various delexicalization strategies. It can be seen that, while the addition of OA-NER tags does not change the performance significantly, the semantic lifting provided by the SS tags decreased the accuracies considerably in both cases (FEVER and FNC).  This demonstrates that while generalizing away from lexical items is important, {\em how much} to generalize remains an open research problem. One future direction of interest is exploring the right level of masking granularity needed for delexicalization, which is likely dependent on the task. 
+Also this work touches upon questions about which granularity offers a good approximation of semantic meanings. For example, Table ~\ref{sstag} shows the performance of Decomposable Attention against various delexicalization strategies. It can be seen that, while the addition of OA-NER tags does not change the performance significantly, the semantic lifting provided by the SS tags decreased the accuracies considerably in both cases (FEVER and FNC).  This demonstrates that while generalizing away from lexical items is important, {\em how much} to generalize remains an open research problem. One future direction of interest is exploring the right level of semantic lifting granularity needed for delexicalization, which is likely dependent on the task. 
 
 
 
-These results, which were published as \citep*{emnlp2019sandeep}, demonstrate that my masking strategy is successful in mitigating the dependency on domain-specific lexical information and aids in certain domain transfer transitions. 
+These results, which were published as \citep*{emnlp2019sandeep}, demonstrate that my semantic lifting strategy is successful in mitigating the dependency on domain-specific lexical information and aids in certain domain transfer transitions. 
+
+\section{Published/Submitted Papers}
+
+\todo{Briefly discuss the 3 papers you published/submitted on this topic, including the LREC one. Add a brief note that you also co-authored another paper (the quant adjs), which is not discussed here.}
 
  
 \section{Future Work/Plan for Dissertation}
@@ -351,7 +360,7 @@ Knowledge distillation is a training procedure where one neural network method f
 
 \subsection{Related Work}
 
-
+\todo{Move to the actual related work section}
 Many previous methods using knowledge distillation focus on task-specific knowledge distillation, which transfers knowledge from a single-task teacher to its student. Tzeng et al.\citep*{tzeng2015simultaneous}, use data distillation in a visual domain adaptation setting in order to transfer class correlations between domains. 
 
 Papernot et al. \citep*{papernot2016distillation} use distillation as a defense to adversarial perturbations against deep neural networks. More recently in Sun et al. \citep*{sun2019patient} , Jiao et al. \citep*{jiao2019tinybert},  Zhao et al.\citep*{zhao2019extreme}, and Tang et al. \citep*{tang2019distilling} the knowledge distillation algorithms are specially designed for transformer-based architectures, and the student models are adapted from teacher models. Liu et al. \citep*{liu2019attentive}, explore the knowledge distillation method under the setting of multi-task learning \citep*{caruana1997multitask} \citep*{baxter2000model}.
@@ -361,7 +370,10 @@ Papernot et al. \citep*{papernot2016distillation} use distillation as a defense 
 
 \subsection{Proposed Solution}
 
-Most of the research so far in knowledge distillation has thus been about transferring the form of model while keeping the same knowledge. In this work I propose to use the same data distillation framework, but aim to keep the model stable and transfer the underlying data semantics instead. This proposal is based on the assumption that a more abstract view of the knowledge contained in a dataset, once freed from particular instantiations related to a given domain, can be used to transfer learning across domains. I propose to distill the student model from one or more teachers where the teacher model will be trained on the lexicalized version of a given dataset, while the student model will be trained from the corresponding delexicalized version (refer masking/delexicalization techniques mentioned above) of the same dataset. The reasons for this setup are as follows:
+\todo{Briefly discuss the MT architecture. Include a figure if you can.}
+
+Most of the research so far in knowledge distillation has thus been about transferring the form of model while keeping the same knowledge. In this work I propose to use the same data distillation framework, but aim to keep the model stable and transfer the underlying data semantics instead. \todo{This is not a correct claim. While it is true that in the prelim work you did data distillation, now you plan to do both data and model distillation. The teacher/student arch. distills the teacher model into the student one. Emphasize that the current literature chooses one direction. Your novel hypothesis is that doing both is better.}
+This proposal is based on the assumption that a more abstract view of the knowledge contained in a dataset, once freed from particular instantiations related to a given domain, can be used to transfer learning across domains. I propose to distill the student model from one or more teachers where the teacher model will be trained on the lexicalized version of a given dataset, while the student model will be trained from the corresponding delexicalized version (refer semantic lifting/delexicalization techniques mentioned above) of the same dataset. The reasons for this setup are as follows:
 
 \begin{itemize}
   \item The distilled model learns a more universal language representation by leveraging the cross-lexicalized-delexicalized data.
@@ -373,14 +385,14 @@ Motivated by the above reasons, I plan to apply knowledge distillation towards s
 
 \begin{itemize}
   \item Both these models have been proven to achieve state of the art results in natural language inference related tasks especially due to their inherent attention mechanisms.
-  \item My approach is more data driven and hence simpler transparent models will enable me to focus on the important semantic transitions needed (e.g.,choice of different masking methods) and their influence in transferring knowledge across domains.
+  \item My approach is more data driven and hence simpler transparent models will enable me to focus on the important semantic transitions needed (e.g.,choice of different semantic lifting methods) and their influence in transferring knowledge across domains.
  \end{itemize}
 
 
 
 \section{Conclusion}
 
- In this work I investigate the need for delexicalization techniques to reduce the potential dependence of NN methods on lexicalized items in NLI tasks. I specifically explore two masking techniques to delexicalize datasets: the first one replaces the lexical entities in an overlap-aware manner, and the second one additionally incorporates semantic lifting of nouns and verbs. My experiments show that delexicalization achieves comparative results {\em in-domain} with the state of the art methods trained on lexicalized data. Importantly, I show that methods trained on delexicalized data transfer considerably better {\em out-of-domain}, which  confirms the importance of delexicalization in NLI tasks for domain transferability. 
+ In this work I investigate the need for delexicalization techniques to reduce the potential dependence of NN methods on lexicalized items in NLI tasks. I specifically explore two semantic lifting techniques to delexicalize datasets: the first one replaces the lexical entities in an overlap-aware manner, and the second one additionally incorporates semantic lifting of nouns and verbs. My experiments show that delexicalization achieves comparative results {\em in-domain} with the state of the art methods trained on lexicalized data. Importantly, I show that methods trained on delexicalized data transfer considerably better {\em out-of-domain}, which  confirms the importance of delexicalization in NLI tasks for domain transferability. 
  
 Next I suggest my plans to explore combining delexicalization with knowledge distillation to transfer learning across domains. Specifically, here  I propose a new variant of the data distillation student teacher framework for learning underlying data semantics to enable domain transfer. Instead of transferring knowledge between different architectures I propose to use the knowledge extracted from a lexicalized dataset in improving a deep neural network which by itself also learns from the corresponding delexicalized dataset. To the best of my knowledge, my proposed method is novel and hence I hope it to contribute significantly to my PhD Dissertation.
 

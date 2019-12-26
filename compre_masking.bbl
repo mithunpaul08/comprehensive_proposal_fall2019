@@ -1,4 +1,4 @@
-\begin{thebibliography}{35}
+\begin{thebibliography}{36}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -69,6 +69,17 @@ Seonhoon Kim, Jin-Hyuk Hong, Inho Kang, and Nojun Kwak.
   co-attentive information.
 \newblock \emph{arXiv preprint arXiv:1805.11360}, 2018.
 
+\bibitem[Chen et~al.(2016)Chen, Zhu, Ling, Wei, Jiang, and
+  Inkpen]{chen2016enhanced}
+Qian Chen, Xiaodan Zhu, Zhenhua Ling, Si~Wei, Hui Jiang, and Diana Inkpen.
+\newblock Enhanced lstm for natural language inference.
+\newblock \emph{arXiv preprint arXiv:1609.06038}, 2016.
+
+\bibitem[Liu et~al.(2019{\natexlab{a}})Liu, He, Chen, and Gao]{liu2019multi}
+Xiaodong Liu, Pengcheng He, Weizhu Chen, and Jianfeng Gao.
+\newblock Multi-task deep neural networks for natural language understanding.
+\newblock \emph{arXiv preprint arXiv:1901.11504}, 2019{\natexlab{a}}.
+
 \bibitem[Gururangan et~al.(2018)Gururangan, Swayamdipta, Levy, Schwartz,
   Bowman, and Smith]{gururangan2018annotation}
 Suchin Gururangan, Swabha Swayamdipta, Omer Levy, Roy Schwartz, Samuel~R
@@ -88,12 +99,6 @@ Adam Poliak, Jason Naradowsky, Aparajita Haldar, Rachel Rudinger, and Benjamin
 Ankur~P Parikh, Oscar T{\"a}ckstr{\"o}m, Dipanjan Das, and Jakob Uszkoreit.
 \newblock A decomposable attention model for natural language inference.
 \newblock \emph{arXiv preprint arXiv:1606.01933}, 2016.
-
-\bibitem[Chen et~al.(2016)Chen, Zhu, Ling, Wei, Jiang, and
-  Inkpen]{chen2016enhanced}
-Qian Chen, Xiaodan Zhu, Zhenhua Ling, Si~Wei, Hui Jiang, and Diana Inkpen.
-\newblock Enhanced lstm for natural language inference.
-\newblock \emph{arXiv preprint arXiv:1609.06038}, 2016.
 
 \bibitem[Romanov and Shivade(2018)]{romanov2018lessons}
 Alexey Romanov and Chaitanya Shivade.
@@ -216,11 +221,12 @@ Raphael Tang, Yao Lu, Linqing Liu, Lili Mou, Olga Vechtomova, and Jimmy Lin.
   networks.
 \newblock \emph{arXiv preprint arXiv:1903.12136}, 2019.
 
-\bibitem[Liu et~al.(2019)Liu, Wang, Lin, Socher, and Xiong]{liu2019attentive}
+\bibitem[Liu et~al.(2019{\natexlab{b}})Liu, Wang, Lin, Socher, and
+  Xiong]{liu2019attentive}
 Linqing Liu, Huan Wang, Jimmy Lin, Richard Socher, and Caiming Xiong.
 \newblock Attentive student meets multi-task teacher: Improved knowledge
   distillation for pretrained models.
-\newblock \emph{arXiv preprint arXiv:1911.03588}, 2019.
+\newblock \emph{arXiv preprint arXiv:1911.03588}, 2019{\natexlab{b}}.
 
 \bibitem[Caruana(1997)]{caruana1997multitask}
 Rich Caruana.
