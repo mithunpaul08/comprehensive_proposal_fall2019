@@ -90,17 +90,14 @@ Most of the research so far in knowledge distillation has thus been about one di
 \section{Preliminary Work}
 
 
-In this section I\footnote{While I use first person pronouns throughout this document for the completeness aspect of this individual PhD dissertation proposal, the preliminary work was done in collaboration with Sandeep Suntwal,  Department of Management Information Systems,University of Arizona} describe several preliminary experiments I conduct \todo{this section should use verbs in past tense, since this work is completed} to verify that models trained on lexicalized data transfer poorly across domains. In particular I investigate the attention weights a state of the art recognizing textual entailment method~\citep*{parikh2016decomposable} assigns to input tokens in the recognizing textual entailment component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., neural network, NNP etc.) or their phrases, which verify my ``American Author" observation stated above. Further I also show results from a few proposed solutions which control for unnecessary lexicalization enabling data transfer across domains.
-
-\todo{Give credit to Sandeep here. Say that this work was a collaboration with him. Be clear what was his contribution and what was yours. Otherwise, the committee will have to speculate...}
-
+In this section I\footnote{The preliminary work was done in collaboration with Sandeep Suntwal,  Department of Management Information Systems,University of Arizona. I use first person pronouns throughout this document for the completeness of a PhD dissertation proposal} describe several preliminary experiments I conducted \todo{this section should use verbs in past tense, since this work is completed} to verify that models trained on lexicalized data transfer poorly across domains. In particular I investigated the attention weights that a state of the art method for recognizing textual entailment ~\citep*{parikh2016decomposable} assigns to input tokens in the recognizing textual entailment component of fact verification systems, and confirmed that most of the weight is assigned to POS tags of nouns (e.g., neural network, NNP etc.) or their phrases, which verify my ``American Author" observation stated above. Further I also show results from a few proposed solutions which control for unnecessary lexicalization enabling data transfer across domains.
 
 
 \subsection{Experiment Set-Up}
  
-To verify that models trained on lexicalized data transfer poorly, I implement a domain transfer experiment where a state-of-the-art recognizing textual entailment model is trained on one dataset (FEVER \citep*{thorne2018fever}) and tested on another dataset (Fake News Challenge \citep*{pomerleau2017fake}). In particular, the neural network method I use is the Decomposable Attention (decomposable attention) \citep*{parikh2016decomposable}, which consistently achieves near state-of-the-art performance on recognizing textual entailment tasks \footnote{This experiment was initially setup during the 2018 FEVER shared task which had provided Decomposable Attention as a strong baseline. At the completion of the shared task, most of the winning teams used another model \citep*{chen2016enhanced}. However, the aim of my work is not to outperform the state of the art performance, but rather to generalize to new domains without retraining.}.  I use the AllenNLP \footnote{\url{https://github.com/allenai/allennlp}}
-implementation of decomposable attention, which was provided by the FEVER task organizers. To investigate DA's reliance on lexical information, I first examine its word-level attention weights (Section \ref{attention_analysis}). 
-Informed by these results, I propose several methods to mask the lexicalized data (Section \ref{masking_techniques}), and evaluate them in in-domain and  out-of-domain settings (Section \ref{sec:results}).
+To verify that models trained on lexicalized data transfer poorly, I implemented a domain transfer experiment where a state-of-the-art recognizing textual entailment model is trained on one dataset (FEVER \citep*{thorne2018fever}) and tested on another dataset (Fake News Challenge \citep*{pomerleau2017fake}). In particular, the neural network method I used is the Decomposable Attention (decomposable attention) \citep*{parikh2016decomposable}, which consistently achieves near state-of-the-art performance on recognizing textual entailment tasks \footnote{This experiment was initially setup during the 2018 FEVER shared task which had provided Decomposable Attention as a strong baseline. At the completion of the shared task, most of the winning teams used another model \citep*{chen2016enhanced}. However, the aim of my work is not to outperform the state of the art performance, but rather to generalize to new domains without retraining.}.  I used the AllenNLP \footnote{\url{https://github.com/allenai/allennlp}}
+implementation of decomposable attention, which was provided by the FEVER task organizers. To investigate DA's reliance on lexical information, I first examined its word-level attention weights (Section \ref{attention_analysis}). 
+Informed by these results, I proposed several methods to semantically lift the lexicalized data (Section \ref{masking_techniques}), and evaluated them in in-domain and  out-of-domain settings (Section \ref{sec:results}).
 
 
 
@@ -121,7 +118,7 @@ Informed by these results, I propose several methods to mask the lexicalized dat
 \subsection{Datasets}
 For analyzing the effects of various delexicalization operations I chose four  popular datasets in natural language inference (NLI): Multi-genre NLI (MNLI) dataset \cite{williams2017broad}, Fact Extraction and Verification  (FEVER) dataset~\cite{thorne2018fever}, the Fake News Challenge (FNC ) dataset \cite{pomerleau2017fake}, and the Medical NLI (MedNLI) dataset \cite{romanov2018lessons}. In MNLI the trained models were tested on both of the validation partitions, the matched partition (which serves as the in-domain partition) and mismatched (the out-of-domain) partition.
 
-Here I take one of the datasets (FEVER \citep*{thorne2018fever}) as an example and trace various issues that were encountered in the data pre-processing phase used to normalize labels and format across all these datasets.
+Here I took one of the datasets (FEVER \citep*{thorne2018fever}) as an example and traced various issues that were encountered in the data pre-processing phase used to normalize labels and format across all these datasets.
 
 
 {\flushleft{\bf Fact Extraction and Verification (FEVER):}} The FEVER \citep*{thorne2018fever} dataset consists of 145,449 training data points, each of which has a claim and a set of evidences retrieved from Wikipedia using a baseline information retrieval (IR) module.
@@ -145,7 +142,7 @@ The evidence sentences retrieved using the nearest page technique were assigned 
 \subsection{Error Analysis of Cross-Domain Attention}\label{attention_analysis}
 
 
-I use the word-level attention weights~\citep*{bahdanau2014neural} learned by decomposable attention to perform  an error analysis in the cross-domain evaluation. 
+I used the word-level attention weights~\citep*{bahdanau2014neural} learned by decomposable attention to perform  an error analysis in the cross-domain evaluation. 
 In particular, I first trained two equivalent decomposable attention models, one on FEVER and the other on FNC. 
 Next, I used both models to predict instances in FEVER development. For each data instance, I calculated the cumulative attention weights assigned by each of the two models to all evidence words. 
 For each of the data instances that were {\em incorrectly} classified by the model trained out of domain (i.e., on FNC) and were {\em correctly} classified by the in-domain model, 
@@ -175,10 +172,8 @@ Importantly, 43.10\% of these noun phrases in FEVER are named entities.
 
 \subsection{Proposed Delexicalization Techniques}
 
-To mitigate the potential domain dependence introduced by these large attention weights, I propose several semantic lifting techniques, which I compare with a deletion baseline.  
-Particularly I experiment with several strategies for delexicalization, i.e., where lexical tokens are replaced (or masked) with indicators of their class. In particular, I first replace named entities with their corresponding semantic tags from Stanford's CoreNLP \citep*{manning2014stanford}. 
-
-To keep track of which entities are referenced betIen claim and evidence sentences, I extend these tags with unique identifiers. Second, I similarly replace other word classes in the sentence (common nouns, verbs, adjectives, and adverbs)  with their super sense tags \citep*{ciaramita2003supersense}.
+To mitigate the potential domain dependence introduced by these large attention weights, I proposed several semantic lifting techniques, which I then compared with a deletion baseline.  
+Particularly I experimented with several strategies for delexicalization, i.e., where lexical tokens are replaced (or masked) with indicators of their class. In particular, I replaced named entities with their corresponding semantic tags from Stanford's CoreNLP \citep*{manning2014stanford}. To keep track of which entities are referenced between claim and evidence sentences, I then extended these tags with unique identifiers. Next I similarly replaced other word classes in the sentence (common nouns, verbs, adjectives, and adverbs)  with their super sense tags \citep*{ciaramita2003supersense}.
 
 
 
@@ -217,16 +212,16 @@ OA-NER  & {With \texttt{organization-c1}, the \texttt{misc-c1} entered commercia
 
 \begin{enumerate}
 \item \textbf{Named Entity (NE) Deletion Baseline:}
-In this technique the lexical items which are tagged as named or numeric entitiesnamed entities by CoreNLP's named entity recognizer (NER)~\citep*{manning2014stanford} are deleted.  
+In this technique the lexical items which are tagged as named or numeric entities by CoreNLP's named entity recognizer (NER)~\citep*{manning2014stanford} were deleted.  
 
-\item {\flushleft{\textbf{Basic NER:}}}  Token sequences which are labeled as named entities are replaced by the corresponding label, e.g., \texttt{location, person}.
+\item {\flushleft{\textbf{Basic NER:}}}  Token sequences which were labeled as named entities were replaced by the corresponding label, e.g., \texttt{location, person}.
 
-\item {\flushleft{\textbf{Overlap Aware NER (OA-NER)}: }} This technique additionally captures the \textit{lexical overlap} between the claim and evidence sentences with entity ids.  
+\item {\flushleft{\textbf{Overlap Aware NER (OA-NER)}: }} This technique additionally captured the \textit{lexical overlap} between the claim and evidence sentences with entity ids.  
 That is, the first instance of a given entity in the claim is tagged with \texttt{c1}, where the \texttt{c} denotes the fact that it was found in the claim sentence (e.g., \texttt{person-c1}). Wherever this {\em same} entity is found later, in claim or in evidence, it is replaced with this unique tag. If an entity is found only in evidence, then it is denoted by an \texttt{e} tag. (e.g., \texttt{location-e3} would be the third location found only in the evidence).
 
 For example, in the claim-evidence pair shown in Table~\ref{masking_examples}, when the named entity \textit{Singapore Airlines} appears in the claim it is replaced with \texttt{organization-c1}, since it is the first \texttt{organization} to appear in claim. 
 The same id is used wherever the same entity is seen again, e.g., in the evidence sentence. However, the date \textit{27 April 2005} occurs only in the evidence, and hence it is replaced with \texttt{date-e1}.
-Importantly, I create pseudo-pretrained embeddings for these new OA-NER-based tokens by adding a small amount of random Gaussian noise (mean 0 and variance of 0.1) to pre-trained embeddings~\citep*{pennington2014glove} of the root word corresponding to the category (e.g., \textit{person}). Thus the embeddings of all the sub-tags, while being unique, are close to that of the root word.
+Importantly, I createdpseudo-pretrained embeddings for these new OA-NER-based tokens by adding a small amount of random Gaussian noise (mean 0 and variance of 0.1) to the pre-trained embeddings~\citep*{pennington2014glove} of the root word corresponding to the category (e.g., \textit{person}). Thus the embeddings of all the sub-tags, while being unique, are close to that of the root word.
 \item {\flushleft{\textbf{OA-NER + Super Sense (SS) Tags}}}:
 Super-sense tagging is a sequence modeling approach that annotates phrases with coarse WordNet senses~\citep*{ciaramita2003supersense}~\citep*{miller1990introduction}. In this semantic lifting method, I not only replace named entities with their OA-NER tags, but also replace other lexical items with their corresponding super sense tags, if found. As with the OA-NER approach, the lexical overlap is also explicitly marked for all these tags with unique ids (see Table~\ref{masking_examples}). 
 \end{enumerate}
