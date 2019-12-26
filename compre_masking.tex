@@ -76,8 +76,11 @@ In this context, the aims of my research are:
 
 \section{Related Work}
 \subsection{Methods for natural language inference}
-\subsection{Methods for semantic lifting}
-While the technique of delexicalization (or masking) has been used before~\citep*{zeman2008cross}, I have expanded it by incorporating semantic information (the assumption that meaning arises from a set of independent and discrete semantic units)~\citep*{peyrard2019simple}. 
+\subsection{Methods for delexicalization}
+The technique of delexicalization has been used before for various tasks. \citep*{lorenz2002really} uses methods of delexicalization in adjective intensification. ~\citep*{zeman2008cross}, uses delexicalization to replace danish words with their part of speech tags, for the task of cross-language parser adaptation.
+
+
+While the technique of delexicalization (or masking) has been used before I have expanded it by incorporating semantic information (the assumption that meaning arises from a set of independent and discrete semantic units)~\citep*{peyrard2019simple} and will be called as semantic lifting henceforth. 
 
 \subsection{Knowledge Distillation}
 While the intuition for knowledge distillation was suggested in \citep*{ba2014deep} it was formally introduced in \citep*{hinton2015distilling}. Many previous methods using knowledge distillation focus on task-specific knowledge distillation, which transfers knowledge from a single-task teacher to its student. Tzeng et al.\citep*{tzeng2015simultaneous}, use data distillation in a visual domain adaptation setting in order to transfer class correlations between domains. Papernot et al. \citep*{papernot2016distillation} use distillation as a defense to adversarial perturbations against deep neural networks. More recently in Sun et al. \citep*{sun2019patient} , Jiao et al. \citep*{jiao2019tinybert},  Zhao et al.\citep*{zhao2019extreme}, and Tang et al. \citep*{tang2019distilling} the knowledge distillation algorithms are specially designed for transformer-based architectures, and the student models are adapted from teacher models. Liu et al. \citep*{liu2019attentive}, explore the knowledge distillation method under the setting of multi-task learning \citep*{caruana1997multitask} \citep*{baxter2000model}.

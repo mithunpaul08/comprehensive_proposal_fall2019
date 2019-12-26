@@ -1,4 +1,4 @@
-\begin{thebibliography}{39}
+\begin{thebibliography}{40}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -99,6 +99,12 @@ Adam Poliak, Jason Naradowsky, Aparajita Haldar, Rachel Rudinger, and Benjamin
 Ankur~P Parikh, Oscar T{\"a}ckstr{\"o}m, Dipanjan Das, and Jakob Uszkoreit.
 \newblock A decomposable attention model for natural language inference.
 \newblock \emph{arXiv preprint arXiv:1606.01933}, 2016.
+
+\bibitem[Lorenz(2002)]{lorenz2002really}
+Gunter Lorenz.
+\newblock Really worthwhile or not really significant? a corpus-based approach
+  to the delexicalization.
+\newblock \emph{New reflections on grammaticalization}, 49:\penalty0 143, 2002.
 
 \bibitem[Zeman and Resnik(2008)]{zeman2008cross}
 Daniel Zeman and Philip Resnik.
