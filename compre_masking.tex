@@ -77,6 +77,8 @@ In this context, the aims of my research are:
 \section{Related Work}
 \subsection{Methods for natural language inference}
 \subsection{Methods for semantic lifting}
+While the technique of delexicalization (or masking) has been used before~\citep*{zeman2008cross}, I have expanded it by incorporating semantic information (the assumption that meaning arises from a set of independent and discrete semantic units)~\citep*{peyrard2019simple}. 
+
 \subsection{Knowledge Distillation}
 While the intuition for knowledge distillation was suggested in \citep*{ba2014deep} it was formally introduced in \citep*{hinton2015distilling}. Many previous methods using knowledge distillation focus on task-specific knowledge distillation, which transfers knowledge from a single-task teacher to its student. Tzeng et al.\citep*{tzeng2015simultaneous}, use data distillation in a visual domain adaptation setting in order to transfer class correlations between domains. Papernot et al. \citep*{papernot2016distillation} use distillation as a defense to adversarial perturbations against deep neural networks. More recently in Sun et al. \citep*{sun2019patient} , Jiao et al. \citep*{jiao2019tinybert},  Zhao et al.\citep*{zhao2019extreme}, and Tang et al. \citep*{tang2019distilling} the knowledge distillation algorithms are specially designed for transformer-based architectures, and the student models are adapted from teacher models. Liu et al. \citep*{liu2019attentive}, explore the knowledge distillation method under the setting of multi-task learning \citep*{caruana1997multitask} \citep*{baxter2000model}.
 
@@ -88,7 +90,7 @@ Most of the research so far in knowledge distillation has thus been about one di
 \section{Preliminary Work}
 
 
-In this section I describe several preliminary experiments I conduct \todo{this section should use verbs in past tense, since this work is completed} to verify that models trained on lexicalized data transfer poorly across domains. In particular I investigate the attention weights a state of the art recognizing textual entailment method~\citep*{parikh2016decomposable} assigns to input tokens in the recognizing textual entailment component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., neural network, NNP etc.) or their phrases, which verify my ``American Author" observation stated above. Further I also show results from a few proposed solutions which control for unnecessary lexicalization enabling data transfer across domains.
+In this section I\footnote{While I use first person pronouns throughout this document for the completeness aspect of this individual PhD dissertation proposal, the preliminary work was done in collaboration with Sandeep Suntwal,  Department of Management Information Systems,University of Arizona} describe several preliminary experiments I conduct \todo{this section should use verbs in past tense, since this work is completed} to verify that models trained on lexicalized data transfer poorly across domains. In particular I investigate the attention weights a state of the art recognizing textual entailment method~\citep*{parikh2016decomposable} assigns to input tokens in the recognizing textual entailment component of fact verification systems, and confirm that most of the weight is assigned to POS tags of nouns (e.g., neural network, NNP etc.) or their phrases, which verify my ``American Author" observation stated above. Further I also show results from a few proposed solutions which control for unnecessary lexicalization enabling data transfer across domains.
 
 \todo{Give credit to Sandeep here. Say that this work was a collaboration with him. Be clear what was his contribution and what was yours. Otherwise, the committee will have to speculate...}
 
@@ -174,7 +176,7 @@ Importantly, 43.10\% of these noun phrases in FEVER are named entities.
 \subsection{Proposed Delexicalization Techniques}
 
 To mitigate the potential domain dependence introduced by these large attention weights, I propose several semantic lifting techniques, which I compare with a deletion baseline.  
-Particularly I experiment with several strategies for delexicalization, i.e., where lexical tokens are replaced (or masked) with indicators of their class. While the technique of delexicalization (or semantic lifting) has been used before~\citep*{zeman2008cross}, I have expanded it by incorporating semantic information (the assumption that meaning arises from a set of independent and discrete semantic units)~\citep*{peyrard2019simple}. In particular, I first replace named entities with their corresponding semantic tags from Stanford's CoreNLP \citep*{manning2014stanford}. 
+Particularly I experiment with several strategies for delexicalization, i.e., where lexical tokens are replaced (or masked) with indicators of their class. In particular, I first replace named entities with their corresponding semantic tags from Stanford's CoreNLP \citep*{manning2014stanford}. 
 
 To keep track of which entities are referenced betIen claim and evidence sentences, I extend these tags with unique identifiers. Second, I similarly replace other word classes in the sentence (common nouns, verbs, adjectives, and adverbs)  with their super sense tags \citep*{ciaramita2003supersense}.
 
