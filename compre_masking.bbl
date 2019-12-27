@@ -1,4 +1,4 @@
-\begin{thebibliography}{46}
+\begin{thebibliography}{49}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -315,5 +315,25 @@ Rebecca Sharp, Mithun Paul, Ajay Nagesh, Dane Bell, and Mihai Surdeanu.
   Paris, France, May 2018. European Language Resources Association (ELRA).
 \newblock ISBN 979-10-95546-00-9.
 \newblock URL \url{http://www.lrec-conf.org/proceedings/lrec2018/pdf/977.pdf}.
+
+\bibitem[Tarvainen and Valpola(2017)]{tarvainen2017mean}
+Antti Tarvainen and Harri Valpola.
+\newblock Mean teachers are better role models: Weight-averaged consistency
+  targets improve semi-supervised deep learning results.
+\newblock In \emph{Advances in neural information processing systems}, pages
+  1195--1204, 2017.
+
+\bibitem[Valpola(2015)]{valpola2015neural}
+Harri Valpola.
+\newblock From neural pca to deep unsupervised learning.
+\newblock In \emph{Advances in Independent Component Analysis and Learning
+  Machines}, pages 143--171. Elsevier, 2015.
+
+\bibitem[Rasmus et~al.(2015)Rasmus, Berglund, Honkala, Valpola, and
+  Raiko]{rasmus2015semi}
+Antti Rasmus, Mathias Berglund, Mikko Honkala, Harri Valpola, and Tapani Raiko.
+\newblock Semi-supervised learning with ladder networks.
+\newblock In \emph{Advances in neural information processing systems}, pages
+  3546--3554, 2015.
 
 \end{thebibliography}

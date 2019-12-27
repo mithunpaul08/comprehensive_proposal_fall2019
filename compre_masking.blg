@@ -3,44 +3,49 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: compre_masking.aux
 The style file: unsrtnat.bst
 Database file #1: compre_masking.bib
-You've used 46 entries,
+Repeated entry---line 614 of file compre_masking.bib
+ : @inproceedings{rasmus2015semi
+ :                              ,
+I'm skipping whatever remains of this entry
+You've used 49 entries,
             2481 wiz_defined-function locations,
-            789 strings with 14265 characters,
-and the built_in function-call counts, 19678 in all, are:
-= -- 1560
-> -- 1224
-< -- 28
-+ -- 458
-- -- 364
-* -- 1473
-:= -- 3118
-add.period$ -- 149
-call.type$ -- 46
-change.case$ -- 92
-chr.to.int$ -- 44
-cite$ -- 46
-duplicate$ -- 1043
-empty$ -- 1720
-format.name$ -- 428
-if$ -- 4250
+            803 strings with 14762 characters,
+and the built_in function-call counts, 21324 in all, are:
+= -- 1718
+> -- 1279
+< -- 33
++ -- 480
+- -- 380
+* -- 1573
+:= -- 3335
+add.period$ -- 159
+call.type$ -- 49
+change.case$ -- 98
+chr.to.int$ -- 47
+cite$ -- 49
+duplicate$ -- 1141
+empty$ -- 1879
+format.name$ -- 449
+if$ -- 4639
 int.to.chr$ -- 3
-int.to.str$ -- 47
-missing$ -- 45
-newline$ -- 241
-num.names$ -- 140
-pop$ -- 466
+int.to.str$ -- 50
+missing$ -- 48
+newline$ -- 256
+num.names$ -- 149
+pop$ -- 502
 preamble$ -- 1
-purify$ -- 46
+purify$ -- 49
 quote$ -- 0
-skip$ -- 654
+skip$ -- 730
 stack$ -- 0
-substring$ -- 665
-swap$ -- 251
-text.length$ -- 15
+substring$ -- 783
+swap$ -- 290
+text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 322
+type$ -- 343
 warning$ -- 0
-while$ -- 143
+while$ -- 158
 width$ -- 0
-write$ -- 596
+write$ -- 636
+(There was 1 error message)

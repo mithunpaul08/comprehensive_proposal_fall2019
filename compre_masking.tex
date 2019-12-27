@@ -91,12 +91,10 @@ While the intuition for knowledge distillation was suggested in \citep*{ba2014de
 Most of the research so far in knowledge distillation has thus been about one direction; transferring the form of model while keeping the same knowledge. In this work I propose to do both, data and model distillation. With an optimal combination of data and model distillation I hope to extract more knowledge that is domain transferable.
 
 
-\todo{Need to add this section. You can group it in 3 subsections: (a) methods for NLI; (b) masking papers; (c) knowledge distillation. For (b) and (c) emphasize how your direction is different.}
-
 \section{Preliminary Work}
 
 
-In this section I\footnote{The preliminary work was done in collaboration with Sandeep Suntwal,  Department of Management Information Systems,University of Arizona. I use first person pronouns throughout this document for the completeness of a PhD dissertation proposal} describe several preliminary experiments I conducted \todo{this section should use verbs in past tense, since this work is completed} to verify that models trained on lexicalized data transfer poorly across domains. In particular I investigated the attention weights that a state of the art method for recognizing textual entailment ~\citep*{parikh2016decomposable} assigns to input tokens in the recognizing textual entailment component of fact verification systems, and confirmed that most of the weight is assigned to POS tags of nouns (e.g., neural network, NNP etc.) or their phrases, which verify my ``American Author" observation stated above. Further I also show results from a few proposed solutions which control for unnecessary lexicalization enabling data transfer across domains.
+In this section I\footnote{The preliminary work was done in collaboration with Sandeep Suntwal,  Department of Management Information Systems,University of Arizona. I use first person pronouns throughout this document for the completeness of a PhD dissertation proposal.} describe several preliminary experiments I conducted \todo{this section should use verbs in past tense, since this work is completed} to verify that models trained on lexicalized data transfer poorly across domains. In particular I investigated the attention weights that a state of the art method for recognizing textual entailment ~\citep*{parikh2016decomposable} assigns to input tokens in the recognizing textual entailment component of fact verification systems, and confirmed that most of the weight is assigned to POS tags of nouns (e.g., neural network, NNP etc.) or their phrases, which verify my ``American Author" observation stated above. Further I also show results from a few proposed solutions which control for unnecessary lexicalization enabling data transfer across domains.
 
 
 \subsection{Experiment Set-Up}
@@ -360,7 +358,7 @@ Also this work touches upon questions about which granularity offers a good appr
 
 These experiments and results were published in several peer reviewed conferences. The preliminary experiments were first published as an extended abstract at the `Blackbox NLP' workshop hosted as part of the 57th Annual Meeting of the Association for Computational Linguistics (ACL) 2019  \cite{suntwal2019importance}. Further experiments and results were published as a short paper in the 2019 Conference on Empirical Methods in Natural Language Processing \cite{emnlp2019sandeep}. Particularly, in this publication I demonstrated that the semantic lifting strategy is successful in mitigating the dependency on domain-specific lexical information and aids in certain domain transfer transitions. Further, the delexicalized versions of several standard datasets used in natural language inference (MNLI \citep*{williams2017broad}, FEVER \citep*{thorne2018fever}, MedNLI dataset \cite{romanov2018lessons}, and FNC \citep*{pomerleau2017fake}) were released as a submission to 12th Edition of its Language Resources and Evaluation Conference, 2020. In this work we postulate that altering these datasets based on lexical importance is beneficial for organizing research and guiding future empirical work. 
 
-I also co-authored two other publications \cite{sharp}, \cite{sharpGrounding}, which are not discussed here since they are not related to delexicalization.
+I also co-authored two other publications \cite{sharp}, \cite{sharpGrounding}, which are not discussed here since they are not related to this delexicalization effort.
 
 
  
@@ -382,11 +380,29 @@ Knowledge distillation is a training procedure where one neural network method f
 
 \subsection{Proposed Solution}
 
-\todo{Briefly discuss the MT architecture. Include a figure if you can.}
+
+\begin{figure}
+ \includegraphics[width=0.95\linewidth]{mean_teacher.png}
+    \vspace{-3mm}
+    \caption{ The figure depicts a typical teacher student architecture. In this particular manifestation of the teacher student framework, both the student and the teacher model evaluate the input  within
+their computation. The softmax output of the student model is compared with the one-hot label
+using classification cost and with the teacher output using consistency cost. After the weights of the
+student model have been updated with gradient descent, the teacher model weights are updated as an
+exponential moving average of the student weights. Both model outputs can be used for prediction,
+but at the end of the training the teacher prediction is more likely to be correct. A training step with
+an unlabeled example would be similar, except no classification cost would be applied.}
+  \label{fig:attention}
+\vspace{-6mm}
+\end{figure}
 
 
 
-This proposal is based on the assumption that a more abstract view of the knowledge contained in a dataset, once freed from particular instantiations related to a given domain, can be used to transfer learning across domains. I propose to distill the student model from one or more teachers where the teacher model will be trained on the lexicalized version of a given dataset, while the student model will be trained from the corresponding delexicalized version (refer semantic lifting/delexicalization techniques mentioned above) of the same dataset. The reasons for this setup are as follows:
+Student teacher architecture is a particular framework used for knowledge distillation where neural network methods, assume dual roles as that of a teacher and a student. As a teacher, the model generates targets, which are then used by itself for learning. The teacher model is connected to the student model through a cost function. This cost function, traditionally known as the consistency cost, encourages the student model's predictions to be closer to the teacher's prediction, thus enabling knowledge distillation. Thus the student model, which might or might not also have a learning component in itself, thus \textit{learns} from the teacher. Note that since the teacher model itself generates targets for the supervised learning, they may very well be incorrect. Hence the goal, then, is to form a better student model from the teacher model without additional training, while the teacher model improves its own predictions.
+
+In this context, I propose to use a student teacher architecture for knowledge distillation with an exponential moving average. This is inspired from the work of~\citep*{tarvainen2017mean} which in-turn is based on the ladder networks~\citep*{valpola2015neural,rasmus2015semi} framework.This proposal is based on the assumption that a more abstract view of the knowledge contained in a dataset, once freed from particular instantiations related to a given domain, can be used to transfer learning across domains. Particularly, I propose to distill the student model from one or more teachers where the teacher model will be trained on the lexicalized version of a given dataset, while the student model will be trained from the corresponding delexicalized version (refer semantic lifting/delexicalization techniques mentioned above) of the same dataset. The reasons for this setup are as follows:
+
+
+
 
 
 \begin{itemize}
